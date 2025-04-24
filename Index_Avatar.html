@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Planète Pandora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pirata One', cursive;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+    }
+    .planet {
+      width: 150px;
+      height: 150px;
+      background: url('https://i.pinimg.com/736x/8d/a8/4b/8da84b0f6592bbd9cc74f6198cb0b15f.jpg') no-repeat center/cover;
+      border-radius: 50%;
+      animation: spin 10s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .enter-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0288d1;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .enter-button:hover {
+      background-color: #01579b;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bienvenue sur Pandora</h1>
+  <div class="planet"></div>
+  <button class="enter-button" onclick="goToTribes()">Explorer Pandora</button><br>
+  
+  <div class="nav-links mt-4">
+        <a href="Websitesindex.html" class="btn btn-primary">Retour à la sélection des sites</a>
+  </div>
+
+  <script>
+    function goToTribes() {
+      window.location.href = "tribes.html";
+    }
+  </script>
+</body>
+</html>

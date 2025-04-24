@@ -1,0 +1,116 @@
+body {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f9/MotoGP_logo_%282024%29.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  background-color: #fff;
+  margin: 0;
+  font-family: Verdana, sans-serif;
+}
+
+header {
+  text-align: center;
+  background-color: rgba(0, 8, 92, 0.9);
+  color: white;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+main {
+  padding: 20px;
+  text-align: center;
+}
+
+.carousel-container {
+    position: relative;
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+}
+
+.carousel-item {
+    display: none; /* Cache tous les éléments au départ */
+}
+
+.carousel-item img {
+    width: 100%;
+    cursor: pointer; /* Affichage du curseur pointer */
+}
+
+/* Styles des boutons */
+button {
+    position: absolute;
+    top: 50%; /* Centre verticalement */
+    transform: translateY(-50%); /* Ajustement pour un bon centrage */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 50%; /* Boutons ronds */
+}
+
+/* Positionnement à gauche */
+.prev {
+    left: -50px; /* Ajuste la position pour qu'il ne soit pas trop proche */
+}
+
+/* Positionnement à droite */
+.next {
+    right: -50px; /* Ajuste la position pour qu'il ne soit pas trop proche */
+}
+
+/* Effet au survol */
+button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.nav-links {
+  position: fixed;
+  bottom: 90px; /* Ajustez cette valeur si nécessaire pour éviter le chevauchement avec le footer */
+  width: 100%;
+  text-align: center;
+}
+
+.nav-links a {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  background-color: #f1f1f1;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer a {
+  color: #00085C;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

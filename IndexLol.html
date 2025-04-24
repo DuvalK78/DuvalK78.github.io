@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats League of Legends</title>
+    <style>
+        /* Style global */
+        body {
+            font-family: Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 20px 0;
+            color: #f0b429;
+        }
+        img {
+            margin: 20px auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px #f0b429;
+        }
+        hr {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        b {
+            font-size: 1.2em;
+			color: #2c3e50;
+        }
+        select {
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 2px solid #f0b429;
+            background-color: #2c3e50;
+            color: #f0b429;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        select:hover {
+            background-color: #2c3e50;
+        }
+        select:focus {
+            outline: none;
+            border: 2px solid #f0b429;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stats League of Legends</h1>
+    <hr>
+    <div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxmWhMz8n4SRadKodttubYdIjr8RYLiTInMQ&s" 
+             width="100" 
+             alt="Logo League of Legends">
+    </div>
+    <hr>
+    <b>Choisissez un champion :</b>
+    <div>
+        <select name="Champions" onchange="navigateToPage(this)">
+            <option value="" selected>-- Sélectionnez un champion --</option>
+            <option value="Ashe.html">Ashe</option>
+            <option value="Brand.html">Brand</option>
+            <option value="Caitlyn.html">Caitlyn</option>
+            <option value="Darius.html">Darius</option>
+            <option value="Ezreal.html">Ezreal</option>
+            <option value="Galio.html">Galio</option>
+            <option value="Garen.html">Garen</option>
+            <option value="Hecarim.html">Hecarim</option>
+            <option value="Jarvan_IV.html">Jarvan IV</option>
+            <option value="Lucian.html">Lucian</option>
+            <option value="Lux.html">Lux</option>
+            <option value="Maitre_Yi.html">Maître Yi</option>
+            <option value="Miss_Fortune.html">Miss Fortune</option>
+            <option value="Mordekaiser.html">Mordekaiser</option>
+            <option value="Riven.html">Riven</option>
+            <option value="Senna.html">Senna</option>
+            <option value="Seraphine.html">Seraphine</option>
+            <option value="Sona.html">Sona</option>
+            <option value="Talon.html">Talon</option>
+            <option value="Urgot.html">Urgot</option>
+        </select>
+    </div>
+
+    <script>
+        function navigateToPage(selectElement) {
+            const link = selectElement.value;
+            if (link) {
+                window.location.href = link;
+                // Réinitialise la sélection après la navigation
+                selectElement.selectedIndex = 0;
+            }
+        }
+    </script>
+	
+	<div class="nav-links mt-4">
+        <a href="Websitesindex.html" class="btn btn-primary">Retour à la sélection des sites</a>
+	</div>
+</body>
+</html>
