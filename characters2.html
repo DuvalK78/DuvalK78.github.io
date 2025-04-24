@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personnages de Pandora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pirata One', cursive;
+      background-color: #002b5c;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .arrow {
+      font-size: 2rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .arrow:hover {
+      color: #0288d1;
+    }
+    .character {
+      width: 200px;
+      text-align: center;
+    }
+    .character img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .character-name {
+      margin-top: 10px;
+      font-size: 1.5rem;
+    }
+    .description-container {
+      margin-top: 20px;
+      width: 400px;
+      padding: 10px;
+      background-color: #004080;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 1rem;
+      text-align: justify;
+    }
+    .enter-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0288d1;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .enter-button:hover {
+      background-color: #01579b;
+    }
+  </style>
+</head>
+<body>
+  <h1>Choisis un personnage</h1>
+  <div class="carousel">
+    <div class="arrow" onclick="previousCharacter()">&#8592;</div>
+    <div class="character">
+      <img id="character-image" src="https://via.placeholder.com/200x300/0056a3/FFFFFF?text=Personnage+1" alt="Personnage">
+      <div id="character-name" class="character-name">Personnage 1</div>
+    </div>
+    <div class="arrow" onclick="nextCharacter()">&#8594;</div>
+  </div>
+  <div id="character-description" class="description-container">
+    Description du personnage 1.
+  </div>
+
+  <script>
+    // Données des personnages
+    const characters = [
+      {
+        name: "Tonowari",
+        image: "https://lumiere-a.akamaihd.net/v1/images/a_avatarpandorapedia_tonowari_16x9_1098_09_dcd24b92.jpeg?region=0%2C0%2C1920%2C1080",
+        description: "Tonowari est l'olo'eyktan du clan Metkayina. Comme Jake, il supervise le bien-être général de son clan, notamment en organisant des chasses, en construisant et en réparant les structures du village et en organisant des arbitrages entre les membres du clan. Tonowari est un guerrier féroce, mais aussi un homme d'État et un chef qui s'exprime bien. Son clan le respecte pour ses idéaux et sa capacité à les guider dans les moments de grands défis. Lui et sa femme Ronal finissent par lutter contre les répercussions de l'hébergement de la famille Sully et ce que cela signifie pour leur clan.",
+      },
+      {
+        name: "Ronal",
+        image: "https://lumiere-a.akamaihd.net/v1/images/a_avatarpandorapedia_ronal_16x9_1098_10_9d5b4f0d.jpeg?region=0%2C0%2C1920%2C1080",
+        description: "Ronal, farouchement indépendante, est la tsahìk (chamane) du clan du récif de Metkayina. Elle apporte un soutien spirituel et dirige toutes les cérémonies de son clan. En dehors de ses responsabilités de tsahìk, Ronal est également une chasseuse et une guerrière experte et fera tout ce qu'elle doit pour protéger son peuple. Elle est mariée à Tonowari, l'olo'eyktan des Metkayina, et a élevé deux enfants, Tsireya et Aonung, avec un troisième en route.",
+      },
+	  {
+        name: "Ao'nung",
+        image: "https://lumiere-a.akamaihd.net/v1/images/a_avatarpandorapedia_aonung_16x9_1098_12_86bb99ba.jpeg?region=0%2C0%2C1920%2C1080",
+        description: "Sur le point de devenir adulte dans le clan Metkayina, Aonung est un plongeur et un chasseur talentueux, souvent admiré par les autres jeunes hommes de sa communauté. En tant que fils de Ronal et de Tonowari, il est chargé d'aider les enfants Sully à s'assimiler au mode de vie récifal. Il est d'abord déconcerté par l'arrivée de la famille Sully et n'apprécie pas qu'on lui demande d'aider les enfants à s'adapter.",
+      },
+      {
+        name: "Tsireya",
+        image: "https://lumiere-a.akamaihd.net/v1/images/a_avatarpandorapedia_tsireya_16x9_1098_11_c93c0f23.jpeg?region=0%2C0%2C1920%2C1080",
+        description: "Fille de Tonowari et Ronal, Tsireya reflète le leadership de ses parents, mais à sa manière. Elle fait preuve de pleine conscience en tant que Na'vi calme et accueillante, voyant le potentiel des autres et comment ils peuvent contribuer au clan. Son travail de respiration pour retenir plus longtemps sa respiration sous l'eau met également l'accent sur une puissante maîtrise de soi pour le futur tsahík.",
+      },
+    ];
+
+    let currentIndex = 0;
+
+    function updateCharacter() {
+      const character = characters[currentIndex];
+      document.getElementById("character-image").src = character.image;
+      document.getElementById("character-name").textContent = character.name;
+      document.getElementById("character-description").textContent = character.description;
+    }
+
+    function nextCharacter() {
+      currentIndex = (currentIndex + 1) % characters.length;
+      updateCharacter();
+    }
+
+    function previousCharacter() {
+      currentIndex = (currentIndex - 1 + characters.length) % characters.length;
+      updateCharacter();
+    }
+
+    // Initialisation
+    updateCharacter();
+  </script>
+  <br>
+  <button class="enter-button" onclick="goToTribes()">Retour</button>
+
+  <script>
+    function goToTribes() {
+      window.location.href = "tribes.html";
+    }
+  </script>
+</body>
+</html>
