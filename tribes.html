@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Tribus de Pandora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pirata One', cursive;
+      background-color: #001f3f;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .tribes {
+      display: flex;
+      gap: 20px;
+    }
+    .tribe {
+      width: 200px;
+      padding: 20px;
+      background-color: #0074d9;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    .tribe:hover {
+      transform: scale(1.1);
+      background-color: #0056a3;
+    }
+    .tribe img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .tribe-name {
+      margin-top: 10px;
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Choisis ta tribu</h1>
+  <div class="tribes">
+    <div class="tribe" onclick="goToCharacters('Omaticaya')">
+      <img src="https://static.wikia.nocookie.net/jamescameronsavatar/images/3/39/Neteyam_Son_of_Jakesully.jpg/revision/latest/scale-to-width-down/1000?cb=20230419190353" alt="Omaticaya">
+      <div class="tribe-name">Omaticaya</div>
+    </div>
+    <div class="tribe" onclick="goToCharacters2('Metkayina')">
+      <img src="https://static.wikia.nocookie.net/jamescameronsavatar/images/7/7a/Ronal_and_Tonowari_Unwatermarked.png/revision/latest?cb=20221205230102" alt="Metkayina">
+      <div class="tribe-name">Metkayina</div>
+    </div>
+  </div>
+
+  <script>
+    function goToCharacters(tribe) {
+      // Redirige vers la page des personnages en passant la tribu sélectionnée dans l'URL
+      window.location.href = `characters.html?tribe=${tribe}`;
+    }
+  </script>
+  <script>
+    function goToCharacters2(tribe) {
+      // Redirige vers la page des personnages en passant la tribu sélectionnée dans l'URL
+      window.location.href = `characters2.html?tribe=${tribe}`;
+    }
+  </script><br>
+  
+    <div class="nav-links mt-4">
+        <a href="Index_Avatar.html" class="btn btn-primary">Retour à l'accueil</a>
+  </div>
+</body>
+</html>

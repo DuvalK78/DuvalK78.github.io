@@ -1,0 +1,56 @@
+body {
+  background-image:
+url('https://team.fiawec.com/assets/fileuploads/63/c7/63c7cdde4d5f9.png');
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #8AFF2E;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Space between button rows */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between buttons */
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00085C;
+  color: #8AFF2E;
+  border: 1px solid #000000;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button h3 {
+  margin: 0;
+}
+
+#message1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#message1 img {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  height: auto;
+}
+
