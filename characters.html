@@ -130,22 +130,26 @@
       document.getElementById("character-description").textContent = character.description;
     }
 
-    function previous() {
-      currentIndex = (currentIndex - 1 + characters.length) % characters.length;
-      updateCharacter();
-    }
-
-    function next() {
+    function nextCharacter() {
       currentIndex = (currentIndex + 1) % characters.length;
       updateCharacter();
     }
 
-    function goToTribes() {
-      window.location.href = "tribes.html";
+    function previousCharacter() {
+      currentIndex = (currentIndex - 1 + characters.length) % characters.length;
+      updateCharacter();
     }
 
     // Initialisation
     updateCharacter();
+  </script>
+  <br>
+  <button class="enter-button" onclick="goToTribes()">Retour</button>
+
+  <script>
+    function goToTribes() {
+      window.location.href = "tribes.html";
+    }
   </script>
 </body>
 </html>
