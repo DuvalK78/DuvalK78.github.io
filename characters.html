@@ -77,25 +77,16 @@
 <body>
   <h1>Choisis un personnage</h1>
   <div class="carousel">
-    <div class="arrow" onclick="previous()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M8.71 11.29a1 1 0 0 1 0 1.42L4.41 17H20a1 1 0 0 1 0 2H4.41l4.3 4.29a1 1 0 1 1-1.42 1.42l-6-6a1 1 0 0 1 0-1.42l6-6a1 1 0 0 1 1.42 0z"/>
-      </svg>
-    </div>
+    <div class="arrow" onclick="previousCharacter()">&#8592;</div>
     <div class="character">
       <img id="character-image" src="https://via.placeholder.com/200x300/0056a3/FFFFFF?text=Personnage+1" alt="Personnage">
       <div id="character-name" class="character-name">Personnage 1</div>
     </div>
-    <div class="arrow" onclick="next()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M15.29 11.29a1 1 0 0 1 0 1.42L19.59 17H4a1 1 0 0 1 0 2h15.59l-4.3 4.29a1 1 0 1 1-1.42 1.42l6-6a1 1 0 0 1 0-1.42l-6-6a1 1 0 0 1 1.42 0z"/>
-      </svg>
-    </div>
+    <div class="arrow" onclick="nextCharacter()">&#8594;</div>
   </div>
   <div id="character-description" class="description-container">
     Description du personnage 1.
   </div>
-  <button class="enter-button" onclick="goToTribes()">Retour</button>
   <script>
     // Gestion des personnages
     const characters = [
