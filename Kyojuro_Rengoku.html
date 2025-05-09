@@ -59,14 +59,20 @@
             cursor: pointer;
             font-size: 20px;
             transition: background 0.3s;
+            z-index: 10;
         }
 
         .prev:hover, .next:hover {
             background: rgba(255, 0, 0, 0.8);
         }
 
-        .prev { left: 10px; }
-        .next { right: 10px; }
+        .prev {
+            left: 15px; /* légèrement plus vers la droite */
+        }
+
+        .next {
+            right: 15px;
+        }
 
         .character-description {
             max-width: 600px;
@@ -100,7 +106,7 @@
 <body>
     <div class="character-container">
         <h1>Kyojuro Rengoku</h1>
-        
+
         <div class="carousel-container">
             <button class="prev" onclick="prevSlide()">&#10094;</button>
             <div class="carousel" id="carousel">
@@ -115,7 +121,7 @@
             <p><strong>Anniversaire :</strong> 10 Mai</p>
             <p><strong>Taille :</strong> 177 cm</p>
             <p><strong>Poids :</strong> 72 kg</p>
-            <p>Kyojuro Rengoku était le pilier flamme avant d'être tué par le démon Akaza lors de l'arc du train de l'infini, Kyojuro était quelqu'un d'enthousiaste et de bruyant, il était également très courageux.</p>
+            <p>Kyojuro Rengoku était le pilier flamme avant d'être tué par le démon Akaza lors de l'arc du train de l'infini. Kyojuro était quelqu'un d'enthousiaste et de bruyant, il était également très courageux.</p>
         </div>
 
         <a href="PiliersKNY.html" class="btn-link">Retour</a>
