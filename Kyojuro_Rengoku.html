@@ -29,7 +29,7 @@
 
         .carousel-container {
             position: relative;
-            width: 300px;
+            width: 350px; 
             height: 400px;
             overflow: hidden;
             perspective: 1000px;
@@ -65,8 +65,13 @@
             background: rgba(255, 0, 0, 0.8);
         }
 
-        .prev { left: 10px; }
-        .next { right: 10px; }
+        .prev {
+            left: 0px; 
+        }
+
+        .next {
+            right: 0px;
+        }
 
         .character-description {
             max-width: 600px;
@@ -100,7 +105,7 @@
 <body>
     <div class="character-container">
         <h1>Kyojuro Rengoku</h1>
-        
+
         <div class="carousel-container">
             <button class="prev" onclick="prevSlide()">&#10094;</button>
             <div class="carousel" id="carousel">
