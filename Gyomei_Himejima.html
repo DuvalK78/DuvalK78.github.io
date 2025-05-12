@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css_stylesKNY.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Demon_Slayer-Himejima_Gyômei</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: 'Fredericka the Great', cursive;
+            background-image: url("");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .character-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel img {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .prev:hover, .next:hover {
+            background: rgba(255, 0, 0, 0.8);
+        }
+
+        .prev {
+            left: 15px; 
+        }
+
+        .next {
+            right: 15px;
+        }
+
+        .character-description {
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #ff5555;
+            border-radius: 5px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            transition: background-color 0.3s ease, transform 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-link:hover {
+            background-color: #ff0000;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="character-container">
+        <h1>Gyômei Himejima</h1>
+
+        <div class="carousel-container">
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <div class="carousel" id="carousel">
+                <img src="" alt="Gyômei 1">
+                <img src="" alt="Gyômei 2">
+            </div>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <div class="character-description">
+            <p><strong>Âge :</strong> 27 ans</p>
+            <p><strong>Anniversaire :</strong> 23 août</p>
+            <p><strong>Taille :</strong> 220 cm</p>
+            <p><strong>Poids :</strong> 130 kg</p>
+            <p><strong>Style de combat :</strong> Souffle du vent</p>
+            <p>Avant que Gyomei ne soit un pourfendeur de démons et un Pilier, il vivait avec neuf autres enfants orphelins et les a élevés dans un temple. La région était bien connue pour les attaques de démons, alors Gyomei avait toujours brûlé de l'encens de glycine pour éloigner les démons qui pourraient lui faire du mal ainsi qu'aux enfants.</p>
+        </div>
+
+        <a href="PiliersKNY.html" class="btn-link">Retour</a>
+        <a href="indexKNY.html" class="btn-link">Accueil</a>
+    </div>
+
+    <script>
+        let index = 0;
+        const images = document.querySelectorAll(".carousel img");
+        const totalImages = images.length;
+
+        function showSlide() {
+            const carousel = document.getElementById("carousel");
+            carousel.style.transform = `translateX(${-index * 300}px)`;
+        }
+
+        function nextSlide() {
+            index = (index + 1) % totalImages;
+            showSlide();
+        }
+
+        function prevSlide() {
+            index = (index - 1 + totalImages) % totalImages;
+            showSlide();
+        }
+    </script>
+</body>
+</html>
