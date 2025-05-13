@@ -11,6 +11,7 @@
             color: white;
             text-align: center;
             font-family: Arial, sans-serif;
+	    overflow: hidden;
         }
         .nav-links a {
             display: inline-block;
@@ -26,6 +27,20 @@
             background-color: #ffffffaa;
             transform: scale(1.05);
         }
+	.scroll-wrapper {
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		direction: rtl;
+		overflow-y: scroll;
+	}
+	.scroll-content {
+		direction: ltr;
+		padding: 20px;
+		width: 100%;
+	    
         footer {
             position: absolute;
             bottom: 0;
