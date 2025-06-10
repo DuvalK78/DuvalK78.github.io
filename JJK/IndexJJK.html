@@ -1,117 +1,57 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jujutsu Kaisen Fan Site</title>
-  <style>
-    /* Reset de base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { height: 100%; font-family: 'Arial', sans-serif; }
-
-    /* Animation de fond */
-    @keyframes backgroundAnimation {
-      0% { background-position: 0 0; }
-      100% { background-position: 100% 100%; }
-    }
-
-    /* Styles généraux */
-    body {
-      background: url('https://wallpapercat.com/jujutsu-kaisen-tv-series-wallpapers') no-repeat center center fixed;
-      background-size: cover;
-      animation: backgroundAnimation 30s linear infinite;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    header {
-      text-align: center;
-      padding: 50px;
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-    }
-
-    /* Section personnages */
-    .characters {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      padding: 20px;
-    }
-
-    .character {
-      width: 200px;
-      margin: 10px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .character:hover {
-      transform: scale(1.1);
-    }
-
-    .character img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .character h3 {
-      margin-top: 10px;
-      font-size: 1.5rem;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-    }
-
-    footer p {
-      font-size: 1rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jujutsu Kaisen - Site Officiel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header class="header">
+        <div class="logo">Jujutsu Kaisen</div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#characters">Personnages</a></li>
+                <li><a href="#episodes">Épisodes</a></li>
+                <li><a href="#shop">Boutique</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home" class="hero">
+        <div class="overlay">
+            <h1 class="title">Bienvenue dans le Monde de Jujutsu Kaisen</h1>
+            <p class="description">Plongez dans l'univers des sorciers et des malédictions. Découvrez les secrets cachés.</p>
+        </div>
+    </section>
+    
+    <section id="characters" class="section">
+        <h2 class="section-title">Personnages principaux</h2>
+        <div class="characters-container">
+            <!-- Dynamique avec JavaScript -->
+        </div>
+    </section>
 
-  <header>
-    <h1>Bienvenue sur le Fan Site de Jujutsu Kaisen</h1>
-    <p>Explorez l'univers des sorciers et des malédictions</p>
-  </header>
+    <section id="episodes" class="section">
+        <h2 class="section-title">Derniers Épisodes</h2>
+        <div class="episode-list">
+            <!-- Episodes dynamiques avec JavaScript -->
+        </div>
+    </section>
 
-  <section class="characters">
-    <div class="character">
-      <img src="https://wall.alphacoders.com/big.php?i=1342974" alt="Yuji Itadori">
-      <h3>Yuji Itadori</h3>
-    </div>
-    <div class="character">
-      <img src="https://wall.alphacoders.com/big.php?i=1342974" alt="Megumi Fushiguro">
-      <h3>Megumi Fushiguro</h3>
-    </div>
-    <div class="character">
-      <img src="https://wall.alphacoders.com/big.php?i=1342974" alt="Nobara Kugisaki">
-      <h3>Nobara Kugisaki</h3>
-    </div>
-    <div class="character">
-      <img src="https://wall.alphacoders.com/big.php?i=1342974" alt="Satoru Gojo">
-      <h3>Satoru Gojo</h3>
-    </div>
-  </section>
+    <section id="shop" class="section">
+        <h2 class="section-title">Notre Boutique</h2>
+        <div class="shop-items">
+            <!-- Articles de la boutique avec API ou JavaScript -->
+        </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Fan Site de Jujutsu Kaisen</p>
-  </footer>
+    <footer>
+        <p>&copy; 2025 Jujutsu Kaisen. Tous droits réservés.</p>
+    </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
