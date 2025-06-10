@@ -1,91 +1,117 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jujutsu Kaisen - Site Officiel</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #121212;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://example.com/path-to-your-jujutsu-kaisen-background.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-        }
-        header {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5);
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        nav a {
-            color: #fff;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-        nav a:hover {
-            background-color: rgba(255, 0, 0, 0.5);
-        }
-        .container {
-            padding: 20px;
-        }
-        .character {
-            background-color: rgba(0, 0, 0, 0.7);
-            margin: 10px;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jujutsu Kaisen Fan Site</title>
+  <style>
+    /* Reset de base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { height: 100%; font-family: 'Arial', sans-serif; }
+
+    /* Animation de fond */
+    @keyframes backgroundAnimation {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 100%; }
+    }
+
+    /* Styles généraux */
+    body {
+      background: url('https://wallpapercat.com/jujutsu-kaisen-tv-series-wallpapers') no-repeat center center fixed;
+      background-size: cover;
+      animation: backgroundAnimation 30s linear infinite;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    header {
+      text-align: center;
+      padding: 50px;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+    }
+
+    /* Section personnages */
+    .characters {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .character {
+      width: 200px;
+      margin: 10px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .character:hover {
+      transform: scale(1.1);
+    }
+
+    .character img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .character h3 {
+      margin-top: 10px;
+      font-size: 1.5rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    footer p {
+      font-size: 1rem;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Jujutsu Kaisen</h1>
-    </header>
-    <nav>
-        <a href="#accueil">Accueil</a>
-        <a href="#personnages">Personnages</a>
-        <a href="#episodes">Épisodes</a>
-        <a href="#actualites">Actualités</a>
-    </nav>
-    <div class="container">
-        <section id="personnages">
-            <h2>Personnages</h2>
-            <div class="character">
-                <h3>Yuji Itadori</h3>
-                <p>Un lycéen ordinaire qui devient le hôte de Sukuna après avoir avalé l'un de ses doigts maudits.</p>
-            </div>
-            <div class="character">
-                <h3>Megumi Fushiguro</h3>
-                <p>Un sorcier de première année au lycée technique de métiers de Tokyo et un allié de Yuji.</p>
-            </div>
-        </section>
+
+  <header>
+    <h1>Bienvenue sur le Fan Site de Jujutsu Kaisen</h1>
+    <p>Explorez l'univers des sorciers et des malédictions</p>
+  </header>
+
+  <section class="characters">
+    <div class="character">
+      <img src="https://wall.alphacoders.com/big.php?i=1342974" alt="Yuji Itadori">
+      <h3>Yuji Itadori</h3>
     </div>
-    <footer>
-        <p>&copy; 2023 Jujutsu Kaisen - Tous droits réservés</p>
-    </footer>
-    <script>
-        // Vous pouvez ajouter du JavaScript ici pour rendre le site plus dynamique
-        document.addEventListener('DOMContentLoaded', (event) => {
-            console.log('Le site est chargé et prêt!');
-        });
-    </script>
+    <div class="character">
+      <img src="https://wall.alphacoders.com/big.php?i=1342974" alt="Megumi Fushiguro">
+      <h3>Megumi Fushiguro</h3>
+    </div>
+    <div class="character">
+      <img src="https://wall.alphacoders.com/big.php?i=1342974" alt="Nobara Kugisaki">
+      <h3>Nobara Kugisaki</h3>
+    </div>
+    <div class="character">
+      <img src="https://wall.alphacoders.com/big.php?i=1342974" alt="Satoru Gojo">
+      <h3>Satoru Gojo</h3>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Fan Site de Jujutsu Kaisen</p>
+  </footer>
+
 </body>
 </html>
