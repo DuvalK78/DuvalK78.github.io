@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: "Yuji Itadori", image: "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/08/jjk-yuji-power-ups-article-cover.jpg", link: "ItadoriYuji.html" },
         { name: "Megumi Fushiguro", image: "megumi.jpg", link: "FushiguroMegumi.html" },
         { name: "Nobara Kugisaki", image: "nobara.jpg", link: "KugisakiNobara.html" },
-        { name: "Satoru Gojo", image: "gojo.jpg", link: "SatoruGojo.html" }
+        { name: "Satoru Gojo", image: "gojo.jpg", link: "GojoSatoru.html" }
     ];
 
     const charactersContainer = document.querySelector(".characters-container");
