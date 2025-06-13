@@ -16,11 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // Create a link for each character
         const characterLink = document.createElement("a");
         characterLink.href = character.link;
+        characterLink.classList.add("character-link");
 
-        characterLink.innerHTML = `
-            <img src="${character.image}" alt="${character.name}" class="character-image">
-            <h3 class="character-name">${character.name}</h3>
-        `;
+        const characterImage = document.createElement("img");
+        characterImage.src = character.image;
+        characterImage.alt = character.name;
+        characterImage.classList.add("character-image");
+
+        const characterName = document.createElement("h3");
+        characterName.textContent = character.name;
+        characterName.classList.add("character-name");
+
+        characterLink.appendChild(characterImage);
+        characterLink.appendChild(characterName);
 
         characterDiv.appendChild(characterLink);
         charactersContainer.appendChild(characterDiv);
