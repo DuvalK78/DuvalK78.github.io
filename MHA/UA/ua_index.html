@@ -6,12 +6,69 @@
   <title>Bienvenue à U.A. High School</title>
   <link rel="stylesheet" href="../CSS/stylemha.css" />
   <link rel="stylesheet" href="../CSS/fontsmha.css" />
+  <style>
+    /* Police si jamais elle n’est pas déjà dans fontsmha.css */
+    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2020/11/U.A.-High-School-from-My-Hero-Academia.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Bangers', cursive;
+      font-size: 3rem;
+      color: #ffe600;
+      text-shadow: 3px 3px 5px #000;
+      margin-bottom: 40px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 15px 0;
+    }
+
+    a {
+      font-size: 1.5rem;
+      padding: 10px 25px;
+      background-color: #000000aa;
+      color: #00bfff;
+      border: 2px solid #00bfff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #00bfff;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00bfff;
+    }
+  </style>
 </head>
-  <body><h1>Bienvenue à U.A.</h1>
-<ul>
-  <li><a href="classe-1a.html">Classe 1-A</a></li>
-  <li><a href="classe-1b.html">Classe 1-B</a></li>
-  <li><a href="profs.html">Professeurs</a></li>
-</ul>
-  </body>
+<body>
+  <h1>Bienvenue à U.A.</h1>
+  <ul>
+    <li><a href="classe-1a.html">Classe 1-A</a></li>
+    <li><a href="classe-1b.html">Classe 1-B</a></li>
+    <li><a href="profs.html">Professeurs</a></li>
+  </ul>
+</body>
 </html>
