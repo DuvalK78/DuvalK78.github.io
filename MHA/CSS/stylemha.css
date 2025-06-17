@@ -33,7 +33,7 @@ a:hover {
   margin: 10px;
 }
 .entry-container img {
-  animation: zoom-in 4s ease forwards;
+  animation: zoom-out 4s ease forwards;
 }
 
 @keyframes zoom-in {
