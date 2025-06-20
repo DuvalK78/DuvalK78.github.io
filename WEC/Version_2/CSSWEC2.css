@@ -95,3 +95,46 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px auto;
+  gap: 20px;
+}
+
+.team-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 100px;
+  background-color: transparent;
+  border: 2px solid #00085C;
+  color: #00085C;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.team-card:hover {
+  background-color: #00085C;
+  color: #fff;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.nav-arrow {
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  color: #00085C;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-arrow:hover {
+  color: #FF0000;
+}
