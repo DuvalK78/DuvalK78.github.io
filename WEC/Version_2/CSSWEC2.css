@@ -83,7 +83,7 @@ footer {
   text-align: center;
   padding: 10px;
   background-color: #f1f1f1;
-  z-index: 1000;
+  z-index: 1000;;
 }
 
 footer a {
@@ -95,7 +95,6 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
-
 .carousel-container {
   display: flex;
   justify-content: center;
@@ -118,7 +117,6 @@ footer a:hover {
   font-size: 18px;
   border-radius: 5px;
   transition: all 0.3s ease;
-  margin-top: 50px; /* Ajout de la marge supérieure pour faire descendre la carte */
 }
 
 .team-card:hover {
@@ -140,7 +138,6 @@ footer a:hover {
 .nav-arrow:hover {
   color: #FF0000;
 }
-
 .nav-links {
   display: flex;
   justify-content: center;
