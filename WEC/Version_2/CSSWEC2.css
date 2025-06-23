@@ -117,7 +117,6 @@ footer a:hover {
   font-size: 18px;
   border-radius: 5px;
   transition: all 0.3s ease;
-  transform: translateY(20px);
 }
 
 .team-card:hover {
