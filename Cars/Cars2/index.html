@@ -1,1 +1,125 @@
-index.html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Cars 2 - World Grand Prix</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="intro-section">
+    <div class="overlay">
+      <img src="https://static.wikia.nocookie.net/pixarcars/images/6/6b/WorldGrandPrixLogo.png" alt="Logo WGP" class="wgp-logo">
+      <h1>World Grand Prix</h1>
+      <p>Une course, trois pays, un carburant révolutionnaire : l’Allinol.</p>
+      <button onclick="document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });">Commencer ▶</button>
+    </div>
+  </div>
+
+  <header>
+    <nav>
+      <a href="/index.html">← Accueil</a>
+      <a href="/cars2/personnages.html">🔍 Pilotes</a>
+      <a href="/cars2/pistes.html">🛣️ Pistes</a>
+      <a href="/cars2/villes.html">📍 Villes</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="intro">
+      <h2>Présentation du World Grand Prix</h2>
+      <p>
+        Le World Grand Prix est une compétition automobile internationale créée par Sir Miles Axlerod pour promouvoir l'Allinol, un carburant propre. Trois courses sont organisées : Tokyo 🇯🇵, Porto Corsa 🇮🇹, et Londres 🇬🇧. Mais une menace plane : des saboteurs cherchent à discréditer l’Allinol, déclenchant une aventure mêlant course et espionnage.
+      </p>
+    </section>
+
+    <section class="stats">
+      <h2>Statistiques des pilotes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Pilote</th>
+            <th>Pays</th>
+            <th>Podiums</th>
+            <th>Vitesse max</th>
+            <th>Allinol utilisé ?</th>
+            <th>Particularité</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lightning McQueen</td>
+            <td>🇺🇸 USA</td>
+            <td>1</td>
+            <td>~320 km/h</td>
+            <td>Oui</td>
+            <td>Champion Piston Cup</td>
+          </tr>
+          <tr>
+            <td>Francesco Bernoulli</td>
+            <td>🇮🇹 Italie</td>
+            <td>1</td>
+            <td>~300 km/h</td>
+            <td>Oui</td>
+            <td>Star de la Formule FB1</td>
+          </tr>
+          <tr>
+            <td>Shu Todoroki</td>
+            <td>🇯🇵 Japon</td>
+            <td>0</td>
+            <td>–</td>
+            <td>Oui</td>
+            <td>Prototype LMP japonais</td>
+          </tr>
+          <tr>
+            <td>Carla Veloso</td>
+            <td>🇧🇷 Brésil</td>
+            <td>0</td>
+            <td>–</td>
+            <td>Oui</td>
+            <td>Unique pilote féminine</td>
+          </tr>
+          <tr>
+            <td>Jeff Gorvette</td>
+            <td>🇺🇸 USA</td>
+            <td>0</td>
+            <td>–</td>
+            <td>Oui</td>
+            <td>Inspiré NASCAR Corvette C6.R</td>
+          </tr>
+          <tr>
+            <td>Nigel Gearsley</td>
+            <td>🇬🇧 UK</td>
+            <td>0</td>
+            <td>–</td>
+            <td>Oui</td>
+            <td>Style Aston Martin DBR9</td>
+          </tr>
+          <tr>
+            <td>Raoul ÇaRoule</td>
+            <td>🇫🇷 France</td>
+            <td>0</td>
+            <td>–</td>
+            <td>Oui</td>
+            <td>Spécialiste rallye, Citroën</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="cta">
+      <a href="/cars2/personnages.html" class="btn">Voir les personnages</a>
+      <a href="/cars2/pistes.html" class="btn">Voir les pistes</a>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="/index.html">← Accueil</a>
+      <a href="/cars2/personnages.html">🔍 Pilotes</a>
+      <a href="/cars2/pistes.html">🛣️ Pistes</a>
+      <a href="/cars2/villes.html">📍 Villes</a>
+    </nav>
+  </footer>
+</body>
+</html>
