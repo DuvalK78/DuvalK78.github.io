@@ -1,0 +1,123 @@
+/* Police principale */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: #0c0c0c;
+  color: white;
+  line-height: 1.6;
+  padding-bottom: 80px;
+}
+
+/* Navigation fixe */
+nav {
+  background: #101010;
+  padding: 15px 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #00ffcc;
+}
+
+nav a {
+  color: #00ffcc;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+header h1 {
+  font-size: 2.4rem;
+  color: #00ffcc;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #ccc;
+}
+
+/* Grille des cartes pilotes */
+.grid-pilotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Carte pilote */
+.card-pilote {
+  background: #1a1a1a;
+  border: 2px solid #00ffcc33;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px #00ffcc22;
+}
+
+.card-pilote:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px #00ffcc66;
+}
+
+.card-pilote img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-pilote h2 {
+  font-size: 1.2rem;
+  background: #00ffcc22;
+  padding: 12px;
+  color: #00ffcc;
+  text-align: center;
+  border-bottom: 1px solid #00ffcc55;
+}
+
+.card-pilote ul {
+  list-style: none;
+  padding: 15px;
+}
+
+.card-pilote li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+.card-pilote li strong {
+  color: #00ffcc;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 25px 0;
+  background: #000;
+  color: #777;
+  border-top: 1px solid #333;
+  margin-top: 40px;
+}
