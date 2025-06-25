@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Martin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #5f259e;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            text-align: center;
+            background-color: #ed3e41;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pilot-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+        }
+
+        .pilot-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .pilot-logo {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #002d54;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .pilot-details {
+            text-align: left;
+            width: 100%;
+        }
+
+        .pilot-details h2 {
+            color: #5f259e;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .pilot-details ul {
+            list-style: none;
+            padding: 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .pilot-details ul li {
+            margin: 8px 0;
+            color: #ed3e41;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+            position: static;
+            bottom: 20px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-link {
+            display: inline-block;
+            padding: 8px;
+            background-color: transparent;
+            color: #5f259e;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background 0.3s ease;
+            border: 1px solid #ed3e41; 
+        }
+
+        .btn-link:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #5f259e;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f1f1f1;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #002d54;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Jorge Martin</h1>
+    </header>
+
+    <main>
+        <section class="pilot-info">
+            <div class="pilot-card">
+                <img src="width=200"
+                     alt="Logo Jorge Martin" class="pilot-logo">
+            </div>
+            <div class="pilot-details">
+                <h2>Informations sur le pilote</h2>
+                <ul>
+                    <li><strong>Nationalité :</strong> Espagnole</li>
+                    <li><strong>Numéro :</strong> 1</li>
+                    <li><strong>Entrée en Championnat :</strong> </li>
+                    <li><strong>Titres Mondiaux :</strong> 1</li>
+                    <li><strong>Victoires :</strong> </li>
+                    <li><strong>Podiums :</strong> </li>
+                    <li><strong>Pole Positions :</strong> </li>
+                    <li><strong>Fastest Laps :</strong> </li>
+                    <li><strong>Écurie :</strong> Aprilia Racing</li>
+                    <li><strong>Machine :</strong> Aprilia RS-GP 23</li>
+                </ul>
+            </div>
+        </section>
+
+    <div class="button-container">
+        <a href="../MotoGP.html" class="btn-link">← Retour à l'accueil</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 MotoGP Info. Tous droits réservés.</p>
+        <a href="https://www.motogp.com/fr/teams/motogp/aprilia-racing/11d18b37-baba-400a-80c2-f8ddf040f97e?tab=news" target="_blank">Visitez la page officielle de cette équipe du MotoGP</a><br>
+        <a href="" target="_blank">Visitez les résultats de ce pilote</a><br>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
