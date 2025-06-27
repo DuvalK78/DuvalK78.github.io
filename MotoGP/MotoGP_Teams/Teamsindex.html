@@ -1,50 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MotoGP Team</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoGP Team</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .language-selector {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .team-logos {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .team-logos img {
+            margin: 0 10px;
+            height: 50px;
+        }
+        .return-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/MotoGP_logo.svg/2560px-MotoGP_logo.svg.png" alt="MotoGP Logo" class="logo">
-    <div class="top-right">
-      <p>Sa Searching 🔍</p>
-      <button class="btn-top">Page des Team 🏁</button>
+    <header>
+        <div class="logo">
+            <img src="motogp-logo.png" alt="MotoGP Logo" height="50">
+        </div>
+        <h1>MotoGP Team</h1>
+        <div class="language-selector">
+            <select>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+    </header>
+    <div class="content">
+        <p>This text is about the MotoGP team, their achievements, and other relevant information.</p>
+        <div class="team-logos">
+            <img src="modul-logo.png" alt="Modul Logo">
+            <img src="bmw-logo.png" alt="BMW Logo">
+            <img src="petronas-logo.png" alt="Petronas Logo">
+            <img src="nike-logo.png" alt="Nike Logo">
+            <img src="shell-logo.png" alt="Shell Logo">
+        </div>
+        <button class="return-button">Return</button>
     </div>
-  </header>
-
-  <main>
-    <h1>MotoGP team</h1>
-    <p class="description">
-      This is a demo based on the MotoGP teams. Explore various teams and their sponsors. Discover past races, performances, and legendary partnerships.
-    </p>
-
-    <div class="team-container">
-      <div class="team-box">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Modul_logo.svg/2560px-Modul_logo.svg.png" alt="Modul" />
-        <p>Team Logo</p>
-      </div>
-      <div class="team-box">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/2048px-BMW.svg.png" alt="BMW" />
-        <p>Team Logo</p>
-      </div>
-      <div class="team-box">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Honda_logo.svg/2048px-Honda_logo.svg.png" alt="Honda" />
-        <p>Team Name</p>
-      </div>
-      <div class="team-box">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike" />
-        <p>Team Name</p>
-      </div>
-      <div class="team-box">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Shell_logo.svg/2048px-Shell_logo.svg.png" alt="Shell" />
-        <p>Sponsor Name</p>
-      </div>
-    </div>
-
-    <button class="return-btn">Return</button>
-  </main>
 </body>
 </html>
