@@ -3,21 +3,40 @@ body {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
+  margin: 0;
 }
 
-.stripes {
+/* Base commune pour chaque bande */
+.band {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 80px,
-    red 80px,
-    red 120px
-  );
-  opacity: 0.2; /* optionnel, pour effet léger */
+  background-color: red;
+  transform: rotate(-45deg); /* inclinaison de base */
+  opacity: 0.8;              /* pour que ce soit joli (optionnel) */
   z-index: 0;
+}
+
+/* Bande 1 : fine et longue */
+.band1 {
+  width: 300px;
+  height: 20px;
+  top: 100px;
+  left: -50px;
+}
+
+/* Bande 2 : épaisse et plus courte */
+.band2 {
+  width: 200px;
+  height: 40px;
+  top: 250px;
+  left: 30px;
+  transform: rotate(-30deg); /* angle différent */
+}
+
+/* Bande 3 : moyenne et encore un autre angle */
+.band3 {
+  width: 250px;
+  height: 30px;
+  top: 400px;
+  left: -20px;
+  transform: rotate(-60deg);
 }
