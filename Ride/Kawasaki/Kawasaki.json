@@ -1,0 +1,18 @@
+[
+  {
+    "brand": "Kawasaki",
+    "model": "Ninja ZX-10RR",
+    "year": 2019,
+    "displacement": "998 cc",
+    "power": "204 HP",
+    "image": "assets/images/motos/kawasaki/zx10rr-2019.png"
+  },
+  {
+    "brand": "Kawasaki",
+    "model": "Ninja ZX-10R SE",
+    "year": 2019,
+    "displacement": "998 cc",
+    "power": "200 HP",
+    "image": "assets/images/motos/kawasaki/zx10rse-2019.png"
+  }
+]
