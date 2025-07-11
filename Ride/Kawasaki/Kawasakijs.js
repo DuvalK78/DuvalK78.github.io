@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('moto-container');
 
-    fetch('../data/motos.json')
+    fetch('Kawasaki.json')
         .then(response => response.json())
         .then(data => {
             const motosKawasaki = data.filter(moto => moto.brand.toLowerCase() === 'kawasaki');
