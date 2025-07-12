@@ -1,91 +1,97 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fan Site Motos</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-image: url('https://t3.ftcdn.net/jpg/01/10/25/70/360_F_110257004_PLp6DNqDdup6AyThxyraiAdgTgwVrle7.webp');
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 10px;
-        }
-        .grid-item {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            border-radius: 5px;
-        }
-        .grid-item a {
-            color: white;
-        }
-        .grid-item a:hover {
-            color: white;
-        }
-        .grid-item img {
-            max-width: 100px;
-            height: auto;
-            margin: 0 auto;
-        }
-        .footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fan Site Motos</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('https://t3.ftcdn.net/jpg/01/10/25/70/360_F_110257004_PLp6DNqDdup6AyThxyraiAdgTgwVrle7.webp');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    .grid-item img {
+      max-width: 80px;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.875rem;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
-<body>
-    <div class="grid-container">
-        <div class="grid-item">
-            <a href="Aprilia/Aprilia.html">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqaa5zsijBWURRfZzFfEdZEVCx-H-JYByjTw&s" alt="Aprilia">
-            <p>Aprilia</p>
-        </div>
-        <div class="grid-item">
-            <a href="BMW/BMW.html">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Lkz8CYhLquLxpsQJVm-BKPDsbJO7pRw2MQ&s" alt="BMW">
-            <p>BMW</p>
-        </div>
-        <div class="grid-item">
-            <a href="Ducati/Ducati.html">
-            <img src="https://upload.wikimedia.org/wikipedia/fr/a/ae/Ducati_logo.png" alt="Ducati">
-            <p>Ducati</p>
-        </div>
-        <div class="grid-item">
-            <a href="Honda/Honda.html">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" alt="Honda">
-            <p>Honda</p>
-        </div>
-        <div class="grid-item">
-            <a href="Kawasaki/Kawasaki.html">
-            <img src="https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/news/th_black_river_mark.jpg" alt="Kawasaki">
-            <p>Kawasaki</p>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="Suzuki/Suzuki.html">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Suzuki">
-            <p>Suzuki</p>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="Yamaha/Yamaha.html">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Yamaha-Logo.png" alt="Yamaha">
-            <p>Yamaha</p>
-            </a>
-        </div>
-        <div class="grid-item">
-        <a href="../Websitesindex.html">Retour</a>
-        </div>
+<body class="text-white min-h-screen flex flex-col justify-between">
+
+  <main class="p-6">
+    <h1 class="text-3xl font-bold text-center mb-6 bg-black/60 p-4 rounded-xl w-fit mx-auto">Fan Site Moto – Marques</h1>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-black/60 p-4 rounded-xl max-w-5xl mx-auto">
+      <!-- Marques -->
+      <div class="grid-item text-center bg-gray-800 hover:bg-gray-700 rounded-lg p-4">
+        <a href="Aprilia/Aprilia.html">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqaa5zsijBWURRfZzFfEdZEVCx-H-JYByjTw&s" alt="Aprilia">
+          <p class="mt-2">Aprilia</p>
+        </a>
+      </div>
+      <div class="grid-item text-center bg-gray-800 hover:bg-gray-700 rounded-lg p-4">
+        <a href="BMW/BMW.html">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Lkz8CYhLquLxpsQJVm-BKPDsbJO7pRw2MQ&s" alt="BMW">
+          <p class="mt-2">BMW</p>
+        </a>
+      </div>
+      <div class="grid-item text-center bg-gray-800 hover:bg-gray-700 rounded-lg p-4">
+        <a href="Ducati/Ducati.html">
+          <img src="https://upload.wikimedia.org/wikipedia/fr/a/ae/Ducati_logo.png" alt="Ducati">
+          <p class="mt-2">Ducati</p>
+        </a>
+      </div>
+      <div class="grid-item text-center bg-gray-800 hover:bg-gray-700 rounded-lg p-4">
+        <a href="Honda/Honda.html">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" alt="Honda">
+          <p class="mt-2">Honda</p>
+        </a>
+      </div>
+      <div class="grid-item text-center bg-gray-800 hover:bg-gray-700 rounded-lg p-4">
+        <a href="Kawasaki/Kawasaki.html">
+          <img src="https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/news/th_black_river_mark.jpg" alt="Kawasaki">
+          <p class="mt-2">Kawasaki</p>
+        </a>
+      </div>
+      <div class="grid-item text-center bg-gray-800 hover:bg-gray-700 rounded-lg p-4">
+        <a href="Suzuki/Suzuki.html">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Suzuki">
+          <p class="mt-2">Suzuki</p>
+        </a>
+      </div>
+      <div class="grid-item text-center bg-gray-800 hover:bg-gray-700 rounded-lg p-4">
+        <a href="Yamaha/Yamaha.html">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Yamaha-Logo.png" alt="Yamaha">
+          <p class="mt-2">Yamaha</p>
+        </a>
+      </div>
     </div>
-      <footer>
-        Projet personnel - Fan site non officiel - © 2025
-      </footer>
+
+    <!-- Bouton retour centré -->
+    <div class="text-center mt-6">
+      <a href="../Websitesindex.html" class="inline-block bg-white text-black text-sm font-semibold px-4 py-2 rounded hover:bg-gray-300 transition">
+        ⬅️ Retour
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    Projet personnel - Fan site non officiel - © 2025
+  </footer>
+
 </body>
 </html>
