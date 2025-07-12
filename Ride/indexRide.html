@@ -15,10 +15,13 @@
             background-position: center;
         }
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-            padding: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            max-width: 900px;
+            margin: 0 auto;
         }
         .grid-item {
             background-color: #333;
