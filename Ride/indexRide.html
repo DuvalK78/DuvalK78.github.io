@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Peux tu m'améliorer la disposition des cases et les quelques trucs qui sont mal fait stp : <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -8,68 +8,84 @@
     <style>
         body {
             background-image: url('https://t3.ftcdn.net/jpg/01/10/25/70/360_F_110257004_PLp6DNqDdup6AyThxyraiAdgTgwVrle7.webp');
-            background-size: cover;
-            background-position: center;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 10px;
+        }
+        .grid-item {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .grid-item a {
+            color: white;
+        }
+        .grid-item a:hover {
+            color: white;
         }
         .grid-item img {
             max-width: 100px;
             height: auto;
             margin: 0 auto;
         }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
-    <div class="flex-grow p-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div class="grid-item bg-gray-800 text-white text-center p-4 rounded-lg">
-                <a href="Aprilia/Aprilia.html" class="block hover:bg-gray-700 rounded-lg p-2">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqaa5zsijBWURRfZzFfEdZEVCx-H-JYByjTw&s" alt="Aprilia">
-                    <p>Aprilia</p>
-                </a>
-            </div>
-            <div class="grid-item bg-gray-800 text-white text-center p-4 rounded-lg">
-                <a href="BMW/BMW.html" class="block hover:bg-gray-700 rounded-lg p-2">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Lkz8CYhLquLxpsQJVm-BKPDsbJO7pRw2MQ&s" alt="BMW">
-                    <p>BMW</p>
-                </a>
-            </div>
-            <div class="grid-item bg-gray-800 text-white text-center p-4 rounded-lg">
-                <a href="Ducati/Ducati.html" class="block hover:bg-gray-700 rounded-lg p-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/a/ae/Ducati_logo.png" alt="Ducati">
-                    <p>Ducati</p>
-                </a>
-            </div>
-            <div class="grid-item bg-gray-800 text-white text-center p-4 rounded-lg">
-                <a href="Honda/Honda.html" class="block hover:bg-gray-700 rounded-lg p-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" alt="Honda">
-                    <p>Honda</p>
-                </a>
-            </div>
-            <div class="grid-item bg-gray-800 text-white text-center p-4 rounded-lg">
-                <a href="Kawasaki/Kawasaki.html" class="block hover:bg-gray-700 rounded-lg p-2">
-                    <img src="https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/news/th_black_river_mark.jpg" alt="Kawasaki">
-                    <p>Kawasaki</p>
-                </a>
-            </div>
-            <div class="grid-item bg-gray-800 text-white text-center p-4 rounded-lg">
-                <a href="Suzuki/Suzuki.html" class="block hover:bg-gray-700 rounded-lg p-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Suzuki">
-                    <p>Suzuki</p>
-                </a>
-            </div>
-            <div class="grid-item bg-gray-800 text-white text-center p-4 rounded-lg">
-                <a href="Yamaha/Yamaha.html" class="block hover:bg-gray-700 rounded-lg p-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Yamaha-Logo.png" alt="Yamaha">
-                    <p>Yamaha</p>
-                </a>
-            </div>
-            <div class="grid-item bg-gray-800 text-white text-center p-4 rounded-lg">
-                <a href="../Websitesindex.html" class="block hover:bg-gray-700 rounded-lg p-2">Retour</a>
-            </div>
+<body>
+    <div class="grid-container">
+        <div class="grid-item">
+            <a href="Aprilia/Aprilia.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqaa5zsijBWURRfZzFfEdZEVCx-H-JYByjTw&s" alt="Aprilia">
+            <p>Aprilia</p>
+        </div>
+        <div class="grid-item">
+            <a href="BMW/BMW.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Lkz8CYhLquLxpsQJVm-BKPDsbJO7pRw2MQ&s" alt="BMW">
+            <p>BMW</p>
+        </div>
+        <div class="grid-item">
+            <a href="Ducati/Ducati.html">
+            <img src="https://upload.wikimedia.org/wikipedia/fr/a/ae/Ducati_logo.png" alt="Ducati">
+            <p>Ducati</p>
+        </div>
+        <div class="grid-item">
+            <a href="Honda/Honda.html">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" alt="Honda">
+            <p>Honda</p>
+        </div>
+        <div class="grid-item">
+            <a href="Kawasaki/Kawasaki.html">
+            <img src="https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/news/th_black_river_mark.jpg" alt="Kawasaki">
+            <p>Kawasaki</p>
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="Suzuki/Suzuki.html">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Suzuki">
+            <p>Suzuki</p>
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="Yamaha/Yamaha.html">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Yamaha-Logo.png" alt="Yamaha">
+            <p>Yamaha</p>
+            </a>
+        </div>
+        <div class="grid-item">
+        <a href="../Websitesindex.html">Retour</a>
         </div>
     </div>
-    <footer class="bg-gray-800 text-white text-center p-4">
+      <footer>
         Projet personnel - Fan site non officiel - © 2025
-    </footer>
+      </footer>
 </body>
 </html>
