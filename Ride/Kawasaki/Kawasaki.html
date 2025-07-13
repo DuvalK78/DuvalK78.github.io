@@ -1,32 +1,140 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Motos Kawasaki</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moto Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .bike-info {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+        .bike-image {
+            flex: 2;
+            text-align: center;
+        }
+        .bike-image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .bike-details {
+            flex: 1;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+        }
+        .bike-thumbnails {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .thumbnail {
+            width: 150px;
+            height: 100px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .thumbnail img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen font-sans">
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Kawasaki</div>
+        </div>
+        <div class="bike-info">
+            <div class="bike-image">
+                <img src="https://via.placeholder.com/800x400/00FF00/000000?text=Ninja+ZX-10RR" alt="Ninja ZX-10RR">
+            </div>
+            <div class="bike-details">
+                <h1>NINJA ZX-10RR</h1>
+                <p>2019</p>
+                <p>$853</p>
+                <h2>PERFORMANCE</h2>
+                <p>Acceleration: 7.34</p>
+                <p>Top speed: 8.25</p>
+                <p>Handling: 5.91</p>
+                <p>Braking power: 6.56</p>
+                <h2>TECHNICAL DATA</h2>
+                <p>Displacement: 998 cc</p>
+                <p>Engine: 4 Cylinders | 4S</p>
+                <p>Power: 204 HP (150 KW)</p>
+                <p>Weight: 206 Kg</p>
+                <p>Torque: 115.6 Nm (11.7 Kgm)</p>
+                <p>MODEL AFFINITY: Lv. 1</p>
+                <p>Price: 338,500 Cr.</p>
+            </div>
+        </div>
+        <div class="bike-thumbnails">
+            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Aprilia')">
+                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Aprilia" alt="Aprilia">
+            </div>
+            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=BMW')">
+                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=BMW" alt="BMW">
+            </div>
+            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Ducati')">
+                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Ducati" alt="Ducati">
+            </div>
+            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Harley')">
+                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Harley" alt="Harley">
+            </div>
+            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Honda')">
+                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Honda" alt="Honda">
+            </div>
+            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Husqvarna')">
+                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Husqvarna" alt="Husqvarna">
+            </div>
+            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Kawasaki')">
+                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Kawasaki" alt="Kawasaki">
+            </div>
+            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=KTM')">
+                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=KTM" alt="KTM">
+            </div>
+            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=MV+Agusta')">
+                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=MV+Agusta" alt="MV Agusta">
+            </div>
+            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Paton')">
+                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Paton" alt="Paton">
+            </div>
+        </div>
+    </div>
 
-  <header class="bg-black p-4 shadow-lg">
-    <h1 class="text-3xl font-bold text-center text-green-400">Kawasaki</h1>
-    <p class="text-center text-gray-400 text-sm">Sélection de modèles disponibles</p>
-  </header>
-
-  <main class="p-6 space-y-6">
-    <section>
-      <h2 class="text-xl font-semibold mb-4">Modèles disponibles :</h2>
-
-      <div id="moto-container" class="flex space-x-6 overflow-x-auto pb-4">
-        <!-- Motos dynamiques ici -->
-      </div>
-    </section>
-  </main>
-
-  <footer class="text-center text-sm text-gray-400 p-4">
-    Fan site personnel - Kawasaki - © 2025
-  </footer>
-
-  <script src="Kawasakijs.js"></script>
+    <script>
+        function changeBike(imageSrc) {
+            document.querySelector('.bike-image img').src = imageSrc;
+        }
+    </script>
 </body>
 </html>
