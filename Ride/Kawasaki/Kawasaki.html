@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kawasaki Showcase</title>
     <style>
+        @font-face {
+            font-family: 'Letterstitch';
+            src: url('fonts/LetterstitchPlainRegular.woff2') format('woff2'),
+            url('fonts/LetterstitchPlainRegular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
-            font-family: Letterstitch Plain Regular;
+            font-family: 'Letterstitch', sans-serif;
             background-color: #626567;
             margin: 0;
             padding: 0;
@@ -19,13 +27,33 @@
         }
         .header {
             display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 1200px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            color: white;
+            margin-bottom: 20px;
         }
-        .logo {
-            font-size: 24px;
+        .brand {
+            font-size: 28px;
             font-weight: bold;
+            color: #444;
+        }
+
+        .model {
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+       }
+
+       .year-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+       }
+
+       .year {
+            font-size: 20px;
+            color: white;
         }
         .bike-info {
             display: flex;
@@ -38,8 +66,11 @@
             text-align: center;
         }
         .bike-image img {
-            max-width: 100%;
+            width: 100%;
+            max-width: 700px;
             height: auto;
+            display: block;
+            margin: 0 auto;
         }
         .bike-details {
             flex: 1;
@@ -72,9 +103,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">Kawasaki</div><br>
-            <div class="logo">Ninja ZX-10RR</div><br>
-            <div class="logo">2019</div>
+            <div class="brand">Kawasaki</div>
+            <div class="model">Ninja ZX-10RR</div>
+            <div class="year-badge">
+                <span class="year">2019</span>
+            </div>
         </div>
         <div class="bike-info">
             <div class="bike-image">
