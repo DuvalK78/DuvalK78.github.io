@@ -19,46 +19,43 @@
             margin: 0;
             padding: 0;
         }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 20px;
-        }
         .header {
+            flex: 1;
+            color: white;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            color: white;
-            margin-bottom: 20px;
         }
         .brand {
             font-size: 28px;
             font-weight: bold;
-            color: black;
+            color: #444;
         }
 
         .model {
             font-size: 40px;
             font-weight: bold;
             color: white;
-       }
-
-       .year-badge {
+        }
+        
+        .year-badge {
             display: flex;
             align-items: center;
             gap: 10px;
-       }
-
-       .year {
+        }
+        
+        .year {
             font-size: 20px;
             color: white;
         }
         .bike-info {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
             width: 100%;
             max-width: 1200px;
             margin-top: 20px;
+            gap: 20px;
         }
         .bike-image {
             flex: 2;
@@ -76,6 +73,7 @@
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 20px;
+            border-radius: 10px;
         }
         .bike-thumbnails {
             display: flex;
@@ -100,15 +98,14 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="brand">Kawasaki</div>
-            <div class="model">Ninja ZX-10RR</div>
-            <div class="year-badge">
-                <span class="year">2019</span>
-            </div>
-        </div>
         <div class="bike-info">
+                <div class="header">
+                    <div class="brand">Kawasaki</div>
+                    <div class="model">Ninja ZX-10RR</div>
+                    <div class="year-badge">
+                    <span class="year">2019</span>
+                </div>
+        </div>
             <div class="bike-image">
                 <img src="https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/model/19ZX1002G_201GN2DRF1CG_A_001.png" alt="Ninja ZX-10RR">
             </div>
