@@ -48,32 +48,77 @@
             font-size: 20px;
             color: white;
         }
-        .bike-info {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 1200px;
-            margin-top: 20px;
-            gap: 20px;
-        }
-        .bike-image {
-            flex: 2;
-            text-align: center;
-        }
-        .bike-image img {
-            width: 100%;
-            max-width: 700px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        .bike-details {
-            flex: 1;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
+       .bike-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.bike-header {
+    flex: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.brand {
+    font-size: 28px;
+    font-weight: bold;
+    color: #222;
+}
+
+.model {
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+}
+
+.year-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.year {
+    font-size: 20px;
+    color: white;
+}
+
+.rank {
+    background-color: #337bff;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.bike-image {
+    flex: 2;
+    text-align: center;
+}
+
+.bike-image img {
+    max-width: 100%;
+    width: 500px;
+    height: auto;
+}
+
+.bike-details {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
         .bike-thumbnails {
             display: flex;
             flex-wrap: wrap;
@@ -98,30 +143,36 @@
 </head>
 <body>
         <div class="bike-info">
-                <div class="header">
-                    <div class="brand">Kawasaki</div>
-                    <div class="model">Ninja ZX-10RR</div>
-                    <div class="year-badge">
-                    <span class="year">2019</span>
-                </div>
+    <!-- Colonne gauche -->
+    <div class="bike-header">
+        <div class="brand">Kawasaki</div>
+        <div class="model">NINJA ZX-10RR</div>
+        <div class="year-badge">
+            <span class="year">2019</span>
+            <span class="rank">S 853</span>
         </div>
-            <div class="bike-image">
-                <img src="https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/model/19ZX1002G_201GN2DRF1CG_A_001.png" alt="Ninja ZX-10RR">
-            </div>
-            <div class="bike-details">
-                <h2>PERFORMANCE</h2>
-                <p>Acceleration: 7.34</p>
-                <p>Top speed: 8.25</p>
-                <p>Handling: 5.91</p>
-                <p>Braking power: 6.56</p>
-                <h2>TECHNICAL DATA</h2>
-                <p>Displacement: 998 cc</p>
-                <p>Engine: 4 Cylinders | 4S</p>
-                <p>Power: 204 HP (150 KW)</p>
-                <p>Weight: 206 Kg</p>
-                <p>Torque: 115.6 Nm (11.7 Kgm)</p>
-            </div>
-        </div>
+    </div>
+
+    <!-- Colonne du centre (image moto) -->
+    <div class="bike-image">
+        <img src="https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/model/19ZX1002G_201GN2DRF1CG_A_001.png" alt="Ninja ZX-10RR">
+    </div>
+
+    <!-- Colonne droite (détails techniques) -->
+    <div class="bike-details">
+        <h2>PERFORMANCE</h2>
+        <p>Acceleration: 7.34</p>
+        <p>Top speed: 8.25</p>
+        <p>Handling: 5.91</p>
+        <p>Braking power: 6.56</p>
+        <h2>TECHNICAL DATA</h2>
+        <p>Displacement: 998 cc</p>
+        <p>Engine: 4 Cylinders | 4S</p>
+        <p>Power: 204 HP (150 KW)</p>
+        <p>Weight: 206 Kg</p>
+        <p>Torque: 115.6 Nm (11.7 Kgm)</p>
+    </div>
+</div>
         <div class="bike-thumbnails">
             <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Aprilia')">
                 <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Aprilia" alt="Aprilia">
