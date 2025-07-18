@@ -1,216 +1,187 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kawasaki Showcase</title>
-    <style>
-        @font-face {
-            font-family: 'Letterstitch';
-            src: url('fonts/LetterstitchPlainRegular.woff2') format('woff2'),
-            url('fonts/LetterstitchPlainRegular.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kawasaki ZX-10RR Showcase</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            font-family: 'Letterstitch', sans-serif;
-            background-color: #626567;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            flex: 1;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            gap: 10px 30px;
-        }
-        .brand {
-            font-size: 28px;
-            font-weight: bold;
-            color: #444;
-        }
+    body {
+      background-color: #5a5c5e;
+      font-family: Arial, sans-serif;
+      color: white;
+      padding: 40px;
+    }
 
-        .model {
-            font-size: 40px;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .year-badge {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .year {
-            font-size: 20px;
-            color: white;
-        }
-       .bike-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 1300px;
-    margin: 40px auto;
-    padding: 0 40px;
-    box-sizing: border-box;
-}
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
 
-.bike-header {
-    flex: 1;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-}
+    /* Colonne gauche */
+    .bike-header {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-.brand {
-    font-size: 28px;
-    font-weight: bold;
-    color: #222;
-}
+    .bike-header .brand {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2c2c2c;
+    }
 
-.model {
-    font-size: 40px;
-    font-weight: bold;
-    color: white;
-}
+    .bike-header .model {
+      font-size: 48px;
+      font-weight: bold;
+      color: white;
+    }
 
-.year-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+    .bike-header .year-rank {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.year {
-    font-size: 20px;
-    color: white;
-}
+    .bike-header .year {
+      font-size: 20px;
+      color: white;
+    }
 
-.rank {
-    background-color: #337bff;
-    color: white;
-    padding: 2px 8px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 16px;
-}
+    .bike-header .rank {
+      background-color: #227bff;
+      padding: 2px 10px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+    }
 
-.bike-image {
-    flex: 2;
-    text-align: center;
-}
+    /* Image centrale */
+    .bike-image {
+      flex: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.bike-image img {
-    max-width: 100%;
-    width: 500px;
-    height: auto;
-}
+    .bike-image img {
+      max-width: 100%;
+      height: auto;
+      width: 500px;
+      filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.6));
+    }
 
-.bike-details {
-    flex: 1;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-}
+    /* Bloc droit : fiche technique */
+    .bike-details {
+      flex: 1;
+      background-color: #2c2c2c;
+      padding: 25px;
+      border-radius: 12px;
+      font-size: 16px;
+    }
 
-        .bike-thumbnails {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
-        }
-        .thumbnail {
-            width: 150px;
-            height: 100px;
-            background-color: #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .thumbnail img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-    </style>
+    .bike-details h2 {
+      font-size: 18px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: white;
+      border-bottom: 1px solid #777;
+      padding-bottom: 4px;
+    }
+
+    .bike-details p {
+      margin-bottom: 8px;
+    }
+
+    /* Miniatures (optionnel) */
+    .bike-thumbnails {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 10px;
+    }
+
+    .thumbnail {
+      width: 150px;
+      height: 100px;
+      background-color: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .thumbnail img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
 </head>
 <body>
-        <div class="bike-info">
+
+  <div class="container">
     <!-- Colonne gauche -->
     <div class="bike-header">
-        <div class="brand">Kawasaki</div>
-        <div class="model">NINJA ZX-10RR</div>
-        <div class="year-badge">
-            <span class="year">2019</span>
-            <span class="rank">S 853</span>
-        </div>
+      <div class="brand">Kawasaki</div>
+      <div class="model">NINJA ZX-10RR</div>
+      <div class="year-rank">
+        <div class="year">2019</div>
+        <div class="rank">S 853</div>
+      </div>
     </div>
 
-    <!-- Colonne du centre (image moto) -->
+    <!-- Centre -->
     <div class="bike-image">
-        <img src="https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/model/19ZX1002G_201GN2DRF1CG_A_001.png" alt="Ninja ZX-10RR">
+      <img src="https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/model/19ZX1002G_201GN2DRF1CG_A_001.png" alt="Ninja ZX-10RR" />
     </div>
 
-    <!-- Colonne droite (détails techniques) -->
+    <!-- Colonne droite -->
     <div class="bike-details">
-        <h2>PERFORMANCE</h2>
-        <p>Acceleration: 7.34</p>
-        <p>Top speed: 8.25</p>
-        <p>Handling: 5.91</p>
-        <p>Braking power: 6.56</p>
-        <h2>TECHNICAL DATA</h2>
-        <p>Displacement: 998 cc</p>
-        <p>Engine: 4 Cylinders | 4S</p>
-        <p>Power: 204 HP (150 KW)</p>
-        <p>Weight: 206 Kg</p>
-        <p>Torque: 115.6 Nm (11.7 Kgm)</p>
-    </div>
-</div>
-        <div class="bike-thumbnails">
-            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Aprilia')">
-                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Aprilia" alt="Aprilia">
-            </div>
-            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=BMW')">
-                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=BMW" alt="BMW">
-            </div>
-            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Ducati')">
-                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Ducati" alt="Ducati">
-            </div>
-            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Harley')">
-                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Harley" alt="Harley">
-            </div>
-            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Honda')">
-                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Honda" alt="Honda">
-            </div>
-            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Husqvarna')">
-                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Husqvarna" alt="Husqvarna">
-            </div>
-            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Kawasaki')">
-                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Kawasaki" alt="Kawasaki">
-            </div>
-            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=KTM')">
-                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=KTM" alt="KTM">
-            </div>
-            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=MV+Agusta')">
-                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=MV+Agusta" alt="MV Agusta">
-            </div>
-            <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Paton')">
-                <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Paton" alt="Paton">
-            </div>
-        </div>
-    </div>
+      <h2>PERFORMANCE</h2>
+      <p>Acceleration: 7.34</p>
+      <p>Top speed: 8.25</p>
+      <p>Handling: 5.91</p>
+      <p>Braking power: 6.56</p>
 
-    <script>
-        function changeBike(imageSrc) {
-            document.querySelector('.bike-image img').src = imageSrc;
-        }
-    </script>
+      <h2>TECHNICAL DATA</h2>
+      <p>Displacement: 998 cc</p>
+      <p>Engine: 4 Cylinders | 4S</p>
+      <p>Power: 204 HP (150 KW)</p>
+      <p>Weight: 206 Kg</p>
+      <p>Torque: 115.6 Nm (11.7 Kgm)</p>
+    </div>
+  </div>
+
+  <!-- Miniatures -->
+  <div class="bike-thumbnails">
+    <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Aprilia')">
+      <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Aprilia" alt="Aprilia">
+    </div>
+    <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=BMW')">
+      <img src="https://via.placeholder.com/150x100/00FF00/000000?text=BMW" alt="BMW">
+    </div>
+    <div class="thumbnail" onclick="changeBike('https://via.placeholder.com/150x100/00FF00/000000?text=Ducati')">
+      <img src="https://via.placeholder.com/150x100/00FF00/000000?text=Ducati" alt="Ducati">
+    </div>
+    <!-- Ajoute les autres ici -->
+  </div>
+
+  <script>
+    function changeBike(imageSrc) {
+      document.querySelector('.bike-image img').src = imageSrc;
+    }
+  </script>
+
 </body>
 </html>
