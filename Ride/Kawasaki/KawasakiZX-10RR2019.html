@@ -126,6 +126,22 @@
       max-width: 100%;
       max-height: 100%;
     }
+    .btn {
+      background-color: #2c2c2c;
+      color: white;
+      padding: 0.7rem 1.4rem;
+      text-decoration: none;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 0.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #2c2c2c rgba(0, 0, 0, 0.6);
+    }
   </style>
 </head>
 <body>
@@ -176,6 +192,9 @@
     </div>
     <!-- Ajoute les autres ici -->
   </div>
+  <div class="buttons">
+      <a href="Kawasaki.html" class="btn">Retour</a>
+      <a href="../indexRide.html" class="btn">Retour à la sélection des marques</a>
 
   <script>
     function changeBike(imageSrc) {
