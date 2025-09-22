@@ -18,10 +18,19 @@
         <div class="container">
             <h1>MOTOGP TEAMS</h1>
              <div class="hero-buttons">
-                <a href="Aprilia_Racing.html" class="btn btn-primary">Les Équipes</a>
+                 <div class="btn btn-primary" onclick="goToCharacters('Aprilia_Racing')">
+                      <img src="https://wlassets.aprilia.com/wlassets/aprilia/master/Aprilia_World/Racing/Loghi/new-logo/Aprilia_Racing_NERO-ROSSO_Regist/original/Aprilia_Racing_NERO%2BROSSO_Regist.png?1594911215659" alt="Aprilia_Racing">
+                  <div class="team-name">Aprilia Racing</div>
+                </div>
               </div>
         </div>
       </main>
+    <script>
+    function goToCharacters(tribe) {
+      // Redirige vers la page des personnages en passant la tribu sélectionnée dans l'URL
+      window.location.href = `characters.html?tribe=${tribe}`;
+    }
+  </script>
           <footer class="site-footer">
         <div class="container">
             <div class="return-link">
