@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Spotify Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Barre latérale (comme Spotify) -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-music"></i>
+            <h1>Mon Spotify</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="#"><i class="fas fa-search"></i> Rechercher</a></li>
+                <li><a href="#"><i class="fas fa-book"></i> Bibliothèque</a></li>
+            </ul>
+        </nav>
+        <div class="playlist-section">
+            <h3>Playlists</h3>
+            <ul>
+                <li><a href="#">Top 50 France</a></li>
+                <li><a href="#">Mes titres likés</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <header>
+            <div class="search-bar">
+                <input type="text" placeholder="Rechercher des artistes, des titres...">
+            </div>
+            <div class="user-profile">
+                <i class="fas fa-user"></i>
+            </div>
+        </header>
+
+        <!-- Section des artistes/musiques -->
+        <div class="artists-section">
+            <h2>Artistes populaires</h2>
+            <div class="artists-grid">
+                <!-- Exemple d'artiste -->
+                <div class="artist-card">
+                    <img src="assets/images/artiste1.jpg" alt="Artiste 1">
+                    <h3>Nom de l'artiste</h3>
+                </div>
+                <!-- Ajoute d'autres artistes ici -->
+            </div>
+        </div>
+
+        <!-- Section des musiques -->
+        <div class="tracks-section">
+            <h2>Titres populaires</h2>
+            <div class="track-list">
+                <!-- Exemple de musique -->
+                <div class="track">
+                    <img src="assets/images/album1.jpg" alt="Album 1">
+                    <div class="track-info">
+                        <h3>Titre de la musique</h3>
+                        <p>Nom de l'artiste</p>
+                    </div>
+                    <div class="track-duration">
+                        <p>3:45</p>
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <!-- Ajoute d'autres musiques ici -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Lecteur de musique (en bas) -->
+    <div class="music-player">
+        <div class="current-track">
+            <img src="assets/images/album1.jpg" alt="Album en cours">
+            <div class="track-details">
+                <h3>Titre de la musique</h3>
+                <p>Nom de l'artiste</p>
+            </div>
+        </div>
+        <div class="player-controls">
+            <i class="fas fa-step-backward"></i>
+            <i class="fas fa-play"></i>
+            <i class="fas fa-step-forward"></i>
+        </div>
+        <div class="progress-bar">
+            <input type="range" min="0" max="100" value="0">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
