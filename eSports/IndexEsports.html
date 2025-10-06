@@ -1,43 +1,260 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Équipes_Esports</title>
-    <link rel="stylesheet" href="moncss.css">
-</head>
-<body>
-    <h1 align="center">Équipes_Esports</h1>
-    <hr>
-    <b>Choisissez une équipe</b>
-    <select name="Champions" onchange="navigateToPage(this)">
-        <option value="" selected>-- Sélectionnez une équipe --</option>
-        <option value="BDS.html">BDS</option>
-        <option value="BLG.html">BLG</option>
-        <option value="DRX.html">DRX</option>
-        <option value="Fnatic.html">Fnatic</option>
-	<option value="G2_eSports.html">G2_eSports</option>
-	<option value="Gen_G.html">Gen_G</option>
-	<option value="Gentle_Mates.html">Gentle_Mates</option>
-	<option value="JDG.html">JDG</option>
-	<option value="K_Corp.html">K_Corp</option>
-	<option value="Koi.html">Koi</option>
-	<option value="T1.html">T1</option>
-    </select>
+import React, { useEffect, useState } from "react";
 
-    <script>
-        function navigateToPage(selectElement) {
-            const link = selectElement.value;
-            if (link) {
-                window.location.href = link;
-                // Réinitialise la sélection après la navigation
-                selectElement.selectedIndex = 0;
-            }
+// Index Esport — composant React prêt à être collé dans une app (Create React App / Vite)
+// Tailwind CSS requis (utilise Tailwind pour l'esthétique). Par défaut ce composant exporte un composant React.
+
+export default function EsportIndex() {
+  const STORAGE_KEY = "lol-favs-v1";
+
+  const ALL_TEAMS = [
+    { id: "T1", name: "T1", region: "LCK" },
+    { id: "GEN.G", name: "Gen.G", region: "LCK" },
+    { id: "DK", name: "DWG KIA", region: "LCK" },
+    { id: "G2", name: "G2 Esports", region: "LEC" },
+    { id: "FNC", name: "Fnatic", region: "LEC" },
+    { id: "C9", name: "Cloud9", region: "LCS" },
+    { id: "BLG", name: "Bilibili", region: "LPL" },
+    { id: "TSM", name: "TSM", region: "LCS" },
+    { id: "RNG", name: "Royal Never Give Up", region: "LPL" },
+    { id: "EDG", name: "EDward Gaming", region: "LPL" },
+  ];
+
+  const [query, setQuery] = useState("");
+  const [selected, setSelected] = useState([]);
+  const [showOnlySelected, setShowOnlySelected] = useState(false);
+
+  useEffect(() => {
+    // charger depuis localStorage
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) setSelected(JSON.parse(raw));
+    } catch (e) {
+      console.warn("Impossible de charger les favoris:", e);
+    }
+  }, []);
+
+  useEffect(() => {
+    // sauver automatiquement
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(selected));
+    } catch (e) {
+      console.warn("Impossible d'enregistrer:", e);
+    }
+  }, [selected]);
+
+  function toggleTeam(id) {
+    setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
+  }
+
+  function clearSelection() {
+    setSelected([]);
+  }
+
+  const visible = ALL_TEAMS.filter((t) =>
+    (showOnlySelected ? selected.includes(t.id) : true) &&
+    (t.name.toLowerCase().includes(query.toLowerCase()) || t.region.toLowerCase().includes(query.toLowerCase()) || t.id.toLowerCase().includes(query.toLowerCase()))
+  );
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-[#0b1220] to-black text-white flex flex-col">
+      {/* Curtains & stadium lights */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 stadium-gradient" />
+
+        {/* Animated curtains */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="curtain left" />
+          <div className="curtain right" />
+        </div>
+
+        <header className="max-w-7xl mx-auto py-12 px-6 flex items-center justify-between">
+          <div>
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-xl">ESPORT — League of Legends</h1>
+            <p className="mt-2 text-sm text-slate-300">Sélectionne tes équipes favorites — ambiance stadium LCK, écran géant, frissons.</p>
+          </div>
+
+          <div className="flex gap-3 items-center">
+            <button
+              onClick={() => window.history.back()}
+              className="bg-transparent border border-slate-400 hover:bg-white/5 px-4 py-2 rounded-2xl text-sm"
+            >
+              ← Retour
+            </button>
+
+            <button
+              onClick={() => {
+                // sauvegarde déjà automatique — mais on propose d'exporter
+                const payload = { teams: selected, date: new Date().toISOString() };
+                const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "mes-fav-lol.json";
+                a.click();
+                URL.revokeObjectURL(url);
+              }}
+              className="bg-gradient-to-r from-purple-600 to-pink-500 hover:opacity-95 px-4 py-2 rounded-2xl text-sm font-semibold"
+            >
+              Exporter
+            </button>
+          </div>
+        </header>
+
+        {/* Giant projection screen */}
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="relative rounded-xl border border-slate-700 bg-black/60 p-6 shadow-2xl">
+            <div className="projection-screen mx-auto w-full h-44 md:h-64 rounded-lg flex items-center justify-center text-center">
+              <div>
+                <h2 className="text-2xl md:text-4xl font-bold">Stadium Projection</h2>
+                <p className="text-sm text-slate-300 mt-2">Les logos, les caméras, les lumières — c'est ici que tout se joue.</p>
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="col-span-1 md:col-span-2">
+                <div className="flex gap-3 items-center">
+                  <input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Rechercher équipe, région... ex: LCK, T1"
+                    className="flex-1 bg-white/5 placeholder:text-slate-400 px-4 py-2 rounded-xl outline-none"
+                  />
+
+                  <label className="flex items-center gap-2 text-sm">
+                    <input type="checkbox" checked={showOnlySelected} onChange={(e) => setShowOnlySelected(e.target.checked)} className="accent-pink-500" />
+                    Voir seulement mes préférées
+                  </label>
+                </div>
+
+                <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {visible.map((team) => (
+                    <button
+                      key={team.id}
+                      onClick={() => toggleTeam(team.id)}
+                      className={`group relative rounded-2xl p-4 text-left border transform transition-all duration-200 hover:scale-[1.02] ${
+                        selected.includes(team.id) ? "bg-gradient-to-br from-indigo-700 to-pink-600 border-transparent shadow-xl" : "bg-white/3 border-slate-600"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold uppercase shadow-inner ${selected.includes(team.id) ? "bg-white/10" : "bg-white/5"}`}>
+                          {/* Placeholder initials; you can later replace with <img src=...> */}
+                          {team.id}
+                        </div>
+
+                        <div>
+                          <div className="text-sm font-semibold">{team.name}</div>
+                          <div className="text-xs text-slate-300">{team.region}</div>
+                        </div>
+                      </div>
+
+                      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        {selected.includes(team.id) ? (
+                          <span className="text-sm px-2 py-1 rounded bg-white/10">Favori</span>
+                        ) : (
+                          <span className="text-sm px-2 py-1 rounded bg-white/5">Ajouter</span>
+                        )}
+                      </div>
+                    </button>
+                  ))}
+
+                  {visible.length === 0 && (
+                    <div className="col-span-full p-6 text-center text-slate-300">Aucune équipe trouvée — essaie un autre filtre.</div>
+                  )}
+                </div>
+              </div>
+
+              <aside className="col-span-1 rounded-2xl p-4 bg-gradient-to-b from-black/40 to-white/2 border border-slate-700">
+                <h3 className="text-sm uppercase text-slate-300">Mes favoris</h3>
+                <div className="mt-3 space-y-2">
+                  {selected.length === 0 && <div className="text-slate-400 text-sm">Aucun favori — clique sur une équipe pour l'ajouter.</div>}
+
+                  {selected.map((id) => {
+                    const t = ALL_TEAMS.find((x) => x.id === id) || { id, name: id };
+                    return (
+                      <div key={id} className="flex items-center justify-between gap-2 bg-white/3 p-2 rounded">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-md flex items-center justify-center font-bold">{t.id}</div>
+                          <div>
+                            <div className="text-sm font-semibold">{t.name}</div>
+                            <div className="text-xs text-slate-300">{t.region}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <button onClick={() => toggleTeam(id)} className="text-xs px-2 py-1 rounded bg-red-600/90">Suppr</button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-4 flex gap-2">
+                  <button onClick={clearSelection} className="flex-1 text-sm py-2 rounded bg-white/5">Tout retirer</button>
+                  <button
+                    onClick={() => {
+                      // exemple: partager la sélection en encodant l'URL
+                      const share = encodeURIComponent(JSON.stringify(selected));
+                      navigator.clipboard?.writeText(`${window.location.origin}${window.location.pathname}?fav=${share}`);
+                      alert("Lien de partage copié dans le presse-papiers !");
+                    }}
+                    className="text-sm py-2 px-3 rounded bg-gradient-to-r from-green-500 to-emerald-400"
+                  >
+                    Partager
+                  </button>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+
+        <footer className="mt-12 py-8 text-center text-slate-400">
+          <small>Design inspiré par l'ambiance stadium LCK — remplace les placeholders logos par tes images pour un rendu ultime.</small>
+        </footer>
+      </div>
+
+      {/* Styles spécifiques (curtains, projection) */}
+      <style>{`
+        .stadium-gradient {
+          background: radial-gradient(1200px 400px at 50% 10%, rgba(255,255,255,0.03), transparent 20%),
+                      linear-gradient(180deg, rgba(2,6,23,0.8), rgba(1,3,10,0.95));
         }
-    </script><br>
-	
-	<div class="nav-links mt-4">
-        <a href="../Websitesindex.html" class="btn btn-primary">Retour à la sélection des sites</a>
-	</div>
-</body>
-</html>
 
+        .projection-screen {
+          background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+          border: 1px solid rgba(255,255,255,0.03);
+          backdrop-filter: blur(3px) saturate(120%);
+        }
+
+        /* Curtains */
+        .curtain {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 42%;
+          background: linear-gradient(90deg, rgba(10,10,20,0.95), rgba(40,12,60,0.85));
+          box-shadow: inset -40px 0 80px rgba(0,0,0,0.6);
+          transform-origin: center;
+          z-index: -1;
+          animation: curtainFloat 8s ease-in-out infinite;
+        }
+        .curtain.left { left: -6%; border-top-right-radius: 600px; border-bottom-right-radius: 600px; }
+        .curtain.right { right: -6%; border-top-left-radius: 600px; border-bottom-left-radius: 600px; }
+
+        @keyframes curtainFloat {
+          0% { transform: translateY(0) skewY(0); }
+          50% { transform: translateY(-6px) skewY(-1deg); }
+          100% { transform: translateY(0) skewY(0); }
+        }
+
+        /* Slight shining lights */
+        .projection-screen::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+          mix-blend-mode: overlay;
+          pointer-events: none;
+        }
+      `}</style>
+    </div>
+  );
+}
