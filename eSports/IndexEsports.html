@@ -1,260 +1,364 @@
-import React, { useEffect, useState } from "react";
-
-// Index Esport — composant React prêt à être collé dans une app (Create React App / Vite)
-// Tailwind CSS requis (utilise Tailwind pour l'esthétique). Par défaut ce composant exporte un composant React.
-
-export default function EsportIndex() {
-  const STORAGE_KEY = "lol-favs-v1";
-
-  const ALL_TEAMS = [
-    { id: "T1", name: "T1", region: "LCK" },
-    { id: "GEN.G", name: "Gen.G", region: "LCK" },
-    { id: "DK", name: "DWG KIA", region: "LCK" },
-    { id: "G2", name: "G2 Esports", region: "LEC" },
-    { id: "FNC", name: "Fnatic", region: "LEC" },
-    { id: "C9", name: "Cloud9", region: "LCS" },
-    { id: "BLG", name: "Bilibili", region: "LPL" },
-    { id: "TSM", name: "TSM", region: "LCS" },
-    { id: "RNG", name: "Royal Never Give Up", region: "LPL" },
-    { id: "EDG", name: "EDward Gaming", region: "LPL" },
-  ];
-
-  const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState([]);
-  const [showOnlySelected, setShowOnlySelected] = useState(false);
-
-  useEffect(() => {
-    // charger depuis localStorage
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) setSelected(JSON.parse(raw));
-    } catch (e) {
-      console.warn("Impossible de charger les favoris:", e);
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Esport — Sélection équipes LoL</title>
+  <style>
+    /* Reset + fonts */
+    :root{
+      --bg1:#030416;
+      --bg2:#071226;
+      --accent1:#6b46c1;
+      --accent2:#ec4899;
+      --muted:#9aa4b2;
     }
-  }, []);
-
-  useEffect(() => {
-    // sauver automatiquement
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(selected));
-    } catch (e) {
-      console.warn("Impossible d'enregistrer:", e);
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+    body{
+      min-height:100vh;
+      color:#fff;
+      background: radial-gradient(800px 300px at 50% 10%, rgba(255,255,255,0.02), transparent 10%), linear-gradient(180deg,var(--bg1),var(--bg2) 60%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:24px;
+      gap:20px;
     }
-  }, [selected]);
 
-  function toggleTeam(id) {
-    setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
-  }
+    /* Header */
+    .header{width:100%;max-width:1200px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    h1{margin:0;font-size:clamp(20px,4vw,36px);letter-spacing:0.6px}
+    .subtitle{color:var(--muted);font-size:13px;margin-top:6px}
 
-  function clearSelection() {
-    setSelected([]);
-  }
+    /* Buttons */
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 12px;border-radius:12px;color:#fff;cursor:pointer}
+    .btn.strong{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:none;font-weight:600}
+    .btn:active{transform:translateY(1px)}
 
-  const visible = ALL_TEAMS.filter((t) =>
-    (showOnlySelected ? selected.includes(t.id) : true) &&
-    (t.name.toLowerCase().includes(query.toLowerCase()) || t.region.toLowerCase().includes(query.toLowerCase()) || t.id.toLowerCase().includes(query.toLowerCase()))
-  );
+    /* Stadium area */
+    .stadium{width:100%;max-width:1200px;position:relative;overflow:hidden;border-radius:16px;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 12px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    /* curtains */
+    .curtain{position:absolute;top:-10%;bottom:-10%;width:44%;z-index:0;pointer-events:none;background:linear-gradient(90deg, rgba(9,6,20,0.98), rgba(50,10,70,0.92));box-shadow:inset -30px 0 70px rgba(0,0,0,0.6);border-radius:0 400px 400px 0;transform-origin:center;animation:curtain 8s ease-in-out infinite}
+    .curtain.right{right:-12%;transform:scaleX(-1);border-radius:400px 0 0 400px}
+    .curtain.left{left:-12%}
+    @keyframes curtain{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-[#0b1220] to-black text-white flex flex-col">
-      {/* Curtains & stadium lights */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 stadium-gradient" />
+    /* projection screen */
+    .projection{position:relative;z-index:1;margin:0 auto 18px auto;max-width:1000px;border-radius:12px;padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .screen{height:160px;border-radius:10px;background:linear-gradient(180deg,#0008,#0005);display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:0 12px 30px rgba(0,0,0,0.6)}
+    .screen h2{margin:0;font-size:20px}
+    .screen p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
 
-        {/* Animated curtains */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="curtain left" />
-          <div className="curtain right" />
-        </div>
+    /* layout grid */
+    .layout{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    @media (max-width:880px){.layout{grid-template-columns:1fr}}
 
-        <header className="max-w-7xl mx-auto py-12 px-6 flex items-center justify-between">
-          <div>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-xl">ESPORT — League of Legends</h1>
-            <p className="mt-2 text-sm text-slate-300">Sélectionne tes équipes favorites — ambiance stadium LCK, écran géant, frissons.</p>
-          </div>
+    /* left area */
+    .controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .search{flex:1;min-width:180px;padding:10px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.02);color:#fff}
 
-          <div className="flex gap-3 items-center">
-            <button
-              onClick={() => window.history.back()}
-              className="bg-transparent border border-slate-400 hover:bg-white/5 px-4 py-2 rounded-2xl text-sm"
-            >
-              ← Retour
-            </button>
+    .teams-grid{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+    .team{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:12px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:transform .12s,box-shadow .12s}
+    .team:hover{transform:translateY(-4px)}
+    .team.selected{background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 10px 30px rgba(107,70,193,0.15)}
+    .logo{width:56px;height:56px;border-radius:10px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+    .team .meta{flex:1}
+    .team .meta .name{font-weight:700}
+    .team .meta .region{font-size:12px;color:var(--muted);margin-top:4px}
 
-            <button
-              onClick={() => {
-                // sauvegarde déjà automatique — mais on propose d'exporter
-                const payload = { teams: selected, date: new Date().toISOString() };
-                const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = "mes-fav-lol.json";
-                a.click();
-                URL.revokeObjectURL(url);
-              }}
-              className="bg-gradient-to-r from-purple-600 to-pink-500 hover:opacity-95 px-4 py-2 rounded-2xl text-sm font-semibold"
-            >
-              Exporter
-            </button>
-          </div>
-        </header>
+    /* aside favorites */
+    .aside{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .aside h3{margin:0;font-size:13px;color:var(--muted)}
+    .fav-list{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+    .fav-item{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);padding:8px;border-radius:8px}
+    .small{font-size:13px;color:var(--muted)}
 
-        {/* Giant projection screen */}
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="relative rounded-xl border border-slate-700 bg-black/60 p-6 shadow-2xl">
-            <div className="projection-screen mx-auto w-full h-44 md:h-64 rounded-lg flex items-center justify-center text-center">
-              <div>
-                <h2 className="text-2xl md:text-4xl font-bold">Stadium Projection</h2>
-                <p className="text-sm text-slate-300 mt-2">Les logos, les caméras, les lumières — c'est ici que tout se joue.</p>
-              </div>
-            </div>
+    /* utility */
+    .row{display:flex;gap:8px;align-items:center}
+    .muted{color:var(--muted)}
+    .empty{padding:18px;text-align:center;color:var(--muted)}
+  </style>
+</head>
+<body>
 
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="col-span-1 md:col-span-2">
-                <div className="flex gap-3 items-center">
-                  <input
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Rechercher équipe, région... ex: LCK, T1"
-                    className="flex-1 bg-white/5 placeholder:text-slate-400 px-4 py-2 rounded-xl outline-none"
-                  />
+  <div class="header">
+    <div>
+      <h1>ESPORT — League of Legends</h1>
+      <div class="subtitle">Ambiance stadium — sélectionne tes équipes favorites</div>
+    </div>
 
-                  <label className="flex items-center gap-2 text-sm">
-                    <input type="checkbox" checked={showOnlySelected} onChange={(e) => setShowOnlySelected(e.target.checked)} className="accent-pink-500" />
-                    Voir seulement mes préférées
-                  </label>
-                </div>
+    <div class="row">
+      <button class="btn" id="backBtn">← Retour</button>
+      <button class="btn" id="exportBtn">Exporter</button>
+      <button class="btn" id="importBtn">Importer</button>
+      <input id="fileInput" type="file" accept=".json" style="display:none" />
+      <button class="btn strong" id="shareBtn">Copier lien de partage</button>
+    </div>
+  </div>
 
-                <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {visible.map((team) => (
-                    <button
-                      key={team.id}
-                      onClick={() => toggleTeam(team.id)}
-                      className={`group relative rounded-2xl p-4 text-left border transform transition-all duration-200 hover:scale-[1.02] ${
-                        selected.includes(team.id) ? "bg-gradient-to-br from-indigo-700 to-pink-600 border-transparent shadow-xl" : "bg-white/3 border-slate-600"
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold uppercase shadow-inner ${selected.includes(team.id) ? "bg-white/10" : "bg-white/5"}`}>
-                          {/* Placeholder initials; you can later replace with <img src=...> */}
-                          {team.id}
-                        </div>
+  <div class="stadium" role="main" aria-label="esport selection">
+    <div class="curtain left"></div>
+    <div class="curtain right"></div>
 
-                        <div>
-                          <div className="text-sm font-semibold">{team.name}</div>
-                          <div className="text-xs text-slate-300">{team.region}</div>
-                        </div>
-                      </div>
-
-                      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                        {selected.includes(team.id) ? (
-                          <span className="text-sm px-2 py-1 rounded bg-white/10">Favori</span>
-                        ) : (
-                          <span className="text-sm px-2 py-1 rounded bg-white/5">Ajouter</span>
-                        )}
-                      </div>
-                    </button>
-                  ))}
-
-                  {visible.length === 0 && (
-                    <div className="col-span-full p-6 text-center text-slate-300">Aucune équipe trouvée — essaie un autre filtre.</div>
-                  )}
-                </div>
-              </div>
-
-              <aside className="col-span-1 rounded-2xl p-4 bg-gradient-to-b from-black/40 to-white/2 border border-slate-700">
-                <h3 className="text-sm uppercase text-slate-300">Mes favoris</h3>
-                <div className="mt-3 space-y-2">
-                  {selected.length === 0 && <div className="text-slate-400 text-sm">Aucun favori — clique sur une équipe pour l'ajouter.</div>}
-
-                  {selected.map((id) => {
-                    const t = ALL_TEAMS.find((x) => x.id === id) || { id, name: id };
-                    return (
-                      <div key={id} className="flex items-center justify-between gap-2 bg-white/3 p-2 rounded">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-md flex items-center justify-center font-bold">{t.id}</div>
-                          <div>
-                            <div className="text-sm font-semibold">{t.name}</div>
-                            <div className="text-xs text-slate-300">{t.region}</div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <button onClick={() => toggleTeam(id)} className="text-xs px-2 py-1 rounded bg-red-600/90">Suppr</button>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-4 flex gap-2">
-                  <button onClick={clearSelection} className="flex-1 text-sm py-2 rounded bg-white/5">Tout retirer</button>
-                  <button
-                    onClick={() => {
-                      // exemple: partager la sélection en encodant l'URL
-                      const share = encodeURIComponent(JSON.stringify(selected));
-                      navigator.clipboard?.writeText(`${window.location.origin}${window.location.pathname}?fav=${share}`);
-                      alert("Lien de partage copié dans le presse-papiers !");
-                    }}
-                    className="text-sm py-2 px-3 rounded bg-gradient-to-r from-green-500 to-emerald-400"
-                  >
-                    Partager
-                  </button>
-                </div>
-              </aside>
-            </div>
-          </div>
-        </div>
-
-        <footer className="mt-12 py-8 text-center text-slate-400">
-          <small>Design inspiré par l'ambiance stadium LCK — remplace les placeholders logos par tes images pour un rendu ultime.</small>
-        </footer>
+    <div class="projection">
+      <div class="screen">
+        <h2>Projection Stadium</h2>
+        <p>Logos, lumières, frissons — clique sur une équipe pour l'ajouter aux favoris.</p>
       </div>
 
-      {/* Styles spécifiques (curtains, projection) */}
-      <style>{`
-        .stadium-gradient {
-          background: radial-gradient(1200px 400px at 50% 10%, rgba(255,255,255,0.03), transparent 20%),
-                      linear-gradient(180deg, rgba(2,6,23,0.8), rgba(1,3,10,0.95));
-        }
+      <div class="layout" style="margin-top:18px">
+        <!-- Left: search + teams -->
+        <div>
+          <div class="controls">
+            <input id="searchInput" class="search" placeholder="Rechercher équipe, région, ex: LCK, T1..." />
+            <label class="row small muted"><input id="onlyFavs" type="checkbox" /> Voir seulement mes préférées</label>
+          </div>
 
-        .projection-screen {
-          background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-          border: 1px solid rgba(255,255,255,0.03);
-          backdrop-filter: blur(3px) saturate(120%);
-        }
+          <div class="teams-grid" id="teamsGrid" aria-live="polite" style="margin-top:12px">
+            <!-- cartes équipes injectées par JS -->
+          </div>
+          <div id="noResults" class="empty" style="display:none">Aucune équipe trouvée — essaie un autre filtre.</div>
+        </div>
 
-        /* Curtains */
-        .curtain {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          width: 42%;
-          background: linear-gradient(90deg, rgba(10,10,20,0.95), rgba(40,12,60,0.85));
-          box-shadow: inset -40px 0 80px rgba(0,0,0,0.6);
-          transform-origin: center;
-          z-index: -1;
-          animation: curtainFloat 8s ease-in-out infinite;
-        }
-        .curtain.left { left: -6%; border-top-right-radius: 600px; border-bottom-right-radius: 600px; }
-        .curtain.right { right: -6%; border-top-left-radius: 600px; border-bottom-left-radius: 600px; }
+        <!-- Right: favorites -->
+        <aside class="aside" aria-label="Mes favoris">
+          <h3>Mes favoris</h3>
+          <div class="fav-list" id="favList">
+            <!-- items -->
+          </div>
 
-        @keyframes curtainFloat {
-          0% { transform: translateY(0) skewY(0); }
-          50% { transform: translateY(-6px) skewY(-1deg); }
-          100% { transform: translateY(0) skewY(0); }
-        }
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="btn" id="clearBtn">Tout retirer</button>
+            <button class="btn" id="copyBtn">Copier ID</button>
+          </div>
 
-        /* Slight shining lights */
-        .projection-screen::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
-          mix-blend-mode: overlay;
-          pointer-events: none;
-        }
-      `}</style>
+          <p style="margin-top:12px" class="small muted">Astuce : tu peux remplacer les placeholders logos en ajoutant des URLs dans la variable <code>ALL_TEAMS</code> du script.</p>
+        </aside>
+      </div>
     </div>
-  );
-}
+  </div>
+
+  <script>
+    /************************************************************************
+     * Fichier autonome : équipees LoL (statique)
+     * - Dépose ce fichier dans ton dépôt GitHub (par ex. /esport/index.html)
+     * - Pas de build nécessaire
+     ************************************************************************/
+
+    // --- Données d'équipes (modifie ou ajoute un champ `logo` avec un chemin relatif si besoin) ---
+    const ALL_TEAMS = [
+      { id: "T1", name: "T1", region: "LCK", logo: "" },
+      { id: "GEN.G", name: "Gen.G", region: "LCK", logo: "" },
+      { id: "DK", name: "DWG KIA", region: "LCK", logo: "" },
+      { id: "G2", name: "G2 Esports", region: "LEC", logo: "" },
+      { id: "FNC", name: "Fnatic", region: "LEC", logo: "" },
+      { id: "C9", name: "Cloud9", region: "LCS", logo: "" },
+      { id: "BLG", name: "Bilibili", region: "LPL", logo: "" },
+      { id: "TSM", name: "TSM", region: "LCS", logo: "" },
+      { id: "RNG", name: "Royal Never Give Up", region: "LPL", logo: "" },
+      { id: "EDG", name: "EDward Gaming", region: "LPL", logo: "" }
+    ];
+
+    const STORAGE_KEY = "lol-favs-v1";
+    let selected = []; // array of team ids
+    const teamsGrid = document.getElementById("teamsGrid");
+    const favList = document.getElementById("favList");
+    const searchInput = document.getElementById("searchInput");
+    const onlyFavs = document.getElementById("onlyFavs");
+    const noResults = document.getElementById("noResults");
+
+    // --- helpers ---
+    function save() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(selected)); } catch(e){ console.warn("Save error", e) }
+    }
+    function load() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) selected = JSON.parse(raw);
+      } catch(e){ console.warn("Load error", e) }
+    }
+    function inSelected(id){ return selected.includes(id) }
+
+    // --- rendering ---
+    function renderTeams(){
+      const q = searchInput.value.trim().toLowerCase();
+      const showOnly = onlyFavs.checked;
+      teamsGrid.innerHTML = "";
+      const visible = ALL_TEAMS.filter(t => {
+        if (showOnly && !inSelected(t.id)) return false;
+        if (!q) return true;
+        return [t.id, t.name, t.region].some(s => s.toLowerCase().includes(q));
+      });
+
+      if (visible.length === 0){ noResults.style.display = "block"; } else { noResults.style.display = "none"; }
+
+      visible.forEach(team => {
+        const card = document.createElement("button");
+        card.className = "team" + (inSelected(team.id) ? " selected" : "");
+        card.setAttribute("aria-pressed", inSelected(team.id));
+        card.onclick = () => { toggleTeam(team.id); };
+
+        const logo = document.createElement("div");
+        logo.className = "logo";
+        if (team.logo){
+          const img = document.createElement("img");
+          img.src = team.logo;
+          img.alt = team.name + " logo";
+          img.style.width = "100%";
+          img.style.height = "100%";
+          img.style.objectFit = "cover";
+          img.style.borderRadius = "8px";
+          logo.appendChild(img);
+        } else {
+          logo.textContent = team.id;
+        }
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        const name = document.createElement("div");
+        name.className = "name";
+        name.textContent = team.name;
+        const region = document.createElement("div");
+        region.className = "region";
+        region.textContent = team.region;
+
+        meta.appendChild(name); meta.appendChild(region);
+        card.appendChild(logo); card.appendChild(meta);
+        teamsGrid.appendChild(card);
+      });
+    }
+
+    function renderFavs(){
+      favList.innerHTML = "";
+      if (selected.length === 0){
+        favList.innerHTML = '<div class="empty">Aucun favori — clique sur une équipe pour l\'ajouter.</div>';
+        return;
+      }
+      selected.forEach(id => {
+        const t = ALL_TEAMS.find(x => x.id === id) || {id, name:id, region:"?"};
+        const item = document.createElement("div");
+        item.className = "fav-item";
+        item.innerHTML = `<div class="row"><div style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;font-weight:700;margin-right:8px">${t.id}</div><div><div style="font-weight:700">${t.name}</div><div style="font-size:12px;color:var(--muted)">${t.region}</div></div></div>
+        <div style="display:flex;gap:8px;align-items:center"><button class="btn" data-id="${id}" aria-label="retirer ${id}">Suppr</button></div>`;
+        favList.appendChild(item);
+      });
+
+      // attach remove handlers
+      favList.querySelectorAll("button[data-id]").forEach(b => {
+        b.onclick = () => { toggleTeam(b.dataset.id); }
+      });
+    }
+
+    // --- actions ---
+    function toggleTeam(id){
+      if (inSelected(id)){
+        selected = selected.filter(x => x !== id);
+      } else {
+        selected.push(id);
+      }
+      save();
+      renderTeams();
+      renderFavs();
+    }
+
+    function clearAll(){
+      selected = [];
+      save();
+      renderTeams();
+      renderFavs();
+    }
+
+    function exportJSON(){
+      const payload = { teams: selected, date: new Date().toISOString() };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "mes-fav-lol.json";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+    }
+
+    function importJSONFile(file){
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (Array.isArray(parsed)) selected = parsed;
+          else if (parsed && Array.isArray(parsed.teams)) selected = parsed.teams;
+          else throw new Error("Format JSON invalide");
+          save();
+          renderTeams();
+          renderFavs();
+          alert("Import réussi !");
+        } catch(err){
+          alert("Impossible d'importer : format invalide");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function copyShareLink(){
+      const payload = encodeURIComponent(JSON.stringify(selected));
+      const url = `${location.origin}${location.pathname}?fav=${payload}`;
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(()=>alert("Lien copié dans le presse-papiers !"));
+      } else {
+        prompt("Copie le lien ci-dessous :", url);
+      }
+    }
+
+    function copyIDs(){
+      if (selected.length === 0){ alert("Aucun favori à copier."); return; }
+      const text = selected.join(",");
+      navigator.clipboard?.writeText(text);
+      alert("IDs copiés : " + text);
+    }
+
+    // parse ?fav= param if present (restore)
+    function tryLoadFromParam(){
+      const p = new URLSearchParams(location.search).get("fav");
+      if (!p) return false;
+      try {
+        const decoded = JSON.parse(decodeURIComponent(p));
+        if (Array.isArray(decoded)){
+          selected = decoded;
+          save();
+          return true;
+        }
+      } catch(e){
+        console.warn("param fav invalide", e);
+      }
+      return false;
+    }
+
+    // --- init ---
+    load();
+    tryLoadFromParam(); // overrides localStorage if URL has fav param
+    renderTeams();
+    renderFavs();
+
+    // --- events ---
+    searchInput.addEventListener("input", ()=>renderTeams());
+    onlyFavs.addEventListener("change", ()=>renderTeams());
+    document.getElementById("clearBtn").addEventListener("click", ()=>{ if(confirm("Supprimer tous les favoris ?")) clearAll(); });
+    document.getElementById("exportBtn").addEventListener("click", exportJSON);
+    document.getElementById("copyBtn").addEventListener("click", copyIDs);
+    document.getElementById("shareBtn").addEventListener("click", copyShareLink);
+    document.getElementById("backBtn").addEventListener("click", ()=>history.back());
+    document.getElementById("importBtn").addEventListener("click", ()=>document.getElementById("fileInput").click());
+    document.getElementById("fileInput").addEventListener("change", (e)=> {
+      const f = e.target.files && e.target.files[0];
+      if (f) importJSONFile(f);
+      e.target.value = "";
+    });
+
+    // keyboard accessibility: Enter on focused team toggles it (delegation)
+    teamsGrid.addEventListener("keydown", (ev) => {
+      if(ev.key === "Enter" && ev.target.classList.contains("team")){
+        ev.target.click();
+      }
+    });
+  </script>
+</body>
+</html>
