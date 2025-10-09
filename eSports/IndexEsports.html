@@ -1,364 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Esport — Sélection équipes LoL</title>
-  <style>
-    /* Reset + fonts */
-    :root{
-      --bg1:#030416;
-      --bg2:#071226;
-      --accent1:#6b46c1;
-      --accent2:#ec4899;
-      --muted:#9aa4b2;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-    body{
-      min-height:100vh;
-      color:#fff;
-      background: radial-gradient(800px 300px at 50% 10%, rgba(255,255,255,0.02), transparent 10%), linear-gradient(180deg,var(--bg1),var(--bg2) 60%);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding:24px;
-      gap:20px;
-    }
-
-    /* Header */
-    .header{width:100%;max-width:1200px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-    h1{margin:0;font-size:clamp(20px,4vw,36px);letter-spacing:0.6px}
-    .subtitle{color:var(--muted);font-size:13px;margin-top:6px}
-
-    /* Buttons */
-    .btn{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 12px;border-radius:12px;color:#fff;cursor:pointer}
-    .btn.strong{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:none;font-weight:600}
-    .btn:active{transform:translateY(1px)}
-
-    /* Stadium area */
-    .stadium{width:100%;max-width:1200px;position:relative;overflow:hidden;border-radius:16px;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 12px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-    /* curtains */
-    .curtain{position:absolute;top:-10%;bottom:-10%;width:44%;z-index:0;pointer-events:none;background:linear-gradient(90deg, rgba(9,6,20,0.98), rgba(50,10,70,0.92));box-shadow:inset -30px 0 70px rgba(0,0,0,0.6);border-radius:0 400px 400px 0;transform-origin:center;animation:curtain 8s ease-in-out infinite}
-    .curtain.right{right:-12%;transform:scaleX(-1);border-radius:400px 0 0 400px}
-    .curtain.left{left:-12%}
-    @keyframes curtain{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
-
-    /* projection screen */
-    .projection{position:relative;z-index:1;margin:0 auto 18px auto;max-width:1000px;border-radius:12px;padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
-    .screen{height:160px;border-radius:10px;background:linear-gradient(180deg,#0008,#0005);display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:0 12px 30px rgba(0,0,0,0.6)}
-    .screen h2{margin:0;font-size:20px}
-    .screen p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
-
-    /* layout grid */
-    .layout{display:grid;grid-template-columns:1fr 320px;gap:18px}
-    @media (max-width:880px){.layout{grid-template-columns:1fr}}
-
-    /* left area */
-    .controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-    .search{flex:1;min-width:180px;padding:10px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.02);color:#fff}
-
-    .teams-grid{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
-    .team{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:12px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:transform .12s,box-shadow .12s}
-    .team:hover{transform:translateY(-4px)}
-    .team.selected{background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 10px 30px rgba(107,70,193,0.15)}
-    .logo{width:56px;height:56px;border-radius:10px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
-    .team .meta{flex:1}
-    .team .meta .name{font-weight:700}
-    .team .meta .region{font-size:12px;color:var(--muted);margin-top:4px}
-
-    /* aside favorites */
-    .aside{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-    .aside h3{margin:0;font-size:13px;color:var(--muted)}
-    .fav-list{margin-top:10px;display:flex;flex-direction:column;gap:8px}
-    .fav-item{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);padding:8px;border-radius:8px}
-    .small{font-size:13px;color:var(--muted)}
-
-    /* utility */
-    .row{display:flex;gap:8px;align-items:center}
-    .muted{color:var(--muted)}
-    .empty{padding:18px;text-align:center;color:var(--muted)}
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes équipes LoL favorites</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="stadium-overlay"></div>
 
-  <div class="header">
-    <div>
-      <h1>ESPORT — League of Legends</h1>
-      <div class="subtitle">Ambiance stadium — sélectionne tes équipes favorites</div>
-    </div>
+  <header>
+    <h1>Mes équipes favorites — Esport LoL</h1>
+  </header>
 
-    <div class="row">
-      <button class="btn" id="backBtn">← Retour</button>
-      <button class="btn" id="exportBtn">Exporter</button>
-      <button class="btn" id="importBtn">Importer</button>
-      <input id="fileInput" type="file" accept=".json" style="display:none" />
-      <button class="btn strong" id="shareBtn">Copier lien de partage</button>
-    </div>
-  </div>
+  <main>
+    <section class="carousel">
+      <button class="nav-btn left" id="prevBtn">❮</button>
 
-  <div class="stadium" role="main" aria-label="esport selection">
-    <div class="curtain left"></div>
-    <div class="curtain right"></div>
-
-    <div class="projection">
-      <div class="screen">
-        <h2>Projection Stadium</h2>
-        <p>Logos, lumières, frissons — clique sur une équipe pour l'ajouter aux favoris.</p>
-      </div>
-
-      <div class="layout" style="margin-top:18px">
-        <!-- Left: search + teams -->
-        <div>
-          <div class="controls">
-            <input id="searchInput" class="search" placeholder="Rechercher équipe, région, ex: LCK, T1..." />
-            <label class="row small muted"><input id="onlyFavs" type="checkbox" /> Voir seulement mes préférées</label>
+      <div class="team-display" id="teamDisplay">
+        <!-- Équipe T1 -->
+        <div class="team active">
+          <div class="logo">
+            <img src="PLACEHOLDER_T1_LOGO.png" alt="T1 Logo" />
           </div>
-
-          <div class="teams-grid" id="teamsGrid" aria-live="polite" style="margin-top:12px">
-            <!-- cartes équipes injectées par JS -->
+          <h2>T1</h2>
+          <p>L’équipe légendaire menée par Faker, symbole de la LCK et de l’excellence.</p>
+          <div class="banner">
+            <img src="PLACEHOLDER_T1_BANNER.jpg" alt="T1 Banner" />
           </div>
-          <div id="noResults" class="empty" style="display:none">Aucune équipe trouvée — essaie un autre filtre.</div>
         </div>
 
-        <!-- Right: favorites -->
-        <aside class="aside" aria-label="Mes favoris">
-          <h3>Mes favoris</h3>
-          <div class="fav-list" id="favList">
-            <!-- items -->
+        <!-- Équipe Gen.G -->
+        <div class="team">
+          <div class="logo">
+            <img src="PLACEHOLDER_GENG_LOGO.png" alt="Gen.G Logo" />
           </div>
-
-          <div style="margin-top:12px;display:flex;gap:8px">
-            <button class="btn" id="clearBtn">Tout retirer</button>
-            <button class="btn" id="copyBtn">Copier ID</button>
+          <h2>Gen.G</h2>
+          <p>Puissance, régularité et stratégie : Gen.G incarne la domination moderne en LCK.</p>
+          <div class="banner">
+            <img src="PLACEHOLDER_GENG_BANNER.jpg" alt="Gen.G Banner" />
           </div>
-
-          <p style="margin-top:12px" class="small muted">Astuce : tu peux remplacer les placeholders logos en ajoutant des URLs dans la variable <code>ALL_TEAMS</code> du script.</p>
-        </aside>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <script>
-    /************************************************************************
-     * Fichier autonome : équipees LoL (statique)
-     * - Dépose ce fichier dans ton dépôt GitHub (par ex. /esport/index.html)
-     * - Pas de build nécessaire
-     ************************************************************************/
+      <button class="nav-btn right" id="nextBtn">❯</button>
+    </section>
+  </main>
 
-    // --- Données d'équipes (modifie ou ajoute un champ `logo` avec un chemin relatif si besoin) ---
-    const ALL_TEAMS = [
-      { id: "T1", name: "T1", region: "LCK", logo: "" },
-      { id: "GEN.G", name: "Gen.G", region: "LCK", logo: "" },
-      { id: "DK", name: "DWG KIA", region: "LCK", logo: "" },
-      { id: "G2", name: "G2 Esports", region: "LEC", logo: "" },
-      { id: "FNC", name: "Fnatic", region: "LEC", logo: "" },
-      { id: "C9", name: "Cloud9", region: "LCS", logo: "" },
-      { id: "BLG", name: "Bilibili", region: "LPL", logo: "" },
-      { id: "TSM", name: "TSM", region: "LCS", logo: "" },
-      { id: "RNG", name: "Royal Never Give Up", region: "LPL", logo: "" },
-      { id: "EDG", name: "EDward Gaming", region: "LPL", logo: "" }
-    ];
+  <footer>
+    <button id="returnBtn">⟵ Retour</button>
+  </footer>
 
-    const STORAGE_KEY = "lol-favs-v1";
-    let selected = []; // array of team ids
-    const teamsGrid = document.getElementById("teamsGrid");
-    const favList = document.getElementById("favList");
-    const searchInput = document.getElementById("searchInput");
-    const onlyFavs = document.getElementById("onlyFavs");
-    const noResults = document.getElementById("noResults");
-
-    // --- helpers ---
-    function save() {
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(selected)); } catch(e){ console.warn("Save error", e) }
-    }
-    function load() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) selected = JSON.parse(raw);
-      } catch(e){ console.warn("Load error", e) }
-    }
-    function inSelected(id){ return selected.includes(id) }
-
-    // --- rendering ---
-    function renderTeams(){
-      const q = searchInput.value.trim().toLowerCase();
-      const showOnly = onlyFavs.checked;
-      teamsGrid.innerHTML = "";
-      const visible = ALL_TEAMS.filter(t => {
-        if (showOnly && !inSelected(t.id)) return false;
-        if (!q) return true;
-        return [t.id, t.name, t.region].some(s => s.toLowerCase().includes(q));
-      });
-
-      if (visible.length === 0){ noResults.style.display = "block"; } else { noResults.style.display = "none"; }
-
-      visible.forEach(team => {
-        const card = document.createElement("button");
-        card.className = "team" + (inSelected(team.id) ? " selected" : "");
-        card.setAttribute("aria-pressed", inSelected(team.id));
-        card.onclick = () => { toggleTeam(team.id); };
-
-        const logo = document.createElement("div");
-        logo.className = "logo";
-        if (team.logo){
-          const img = document.createElement("img");
-          img.src = team.logo;
-          img.alt = team.name + " logo";
-          img.style.width = "100%";
-          img.style.height = "100%";
-          img.style.objectFit = "cover";
-          img.style.borderRadius = "8px";
-          logo.appendChild(img);
-        } else {
-          logo.textContent = team.id;
-        }
-
-        const meta = document.createElement("div");
-        meta.className = "meta";
-        const name = document.createElement("div");
-        name.className = "name";
-        name.textContent = team.name;
-        const region = document.createElement("div");
-        region.className = "region";
-        region.textContent = team.region;
-
-        meta.appendChild(name); meta.appendChild(region);
-        card.appendChild(logo); card.appendChild(meta);
-        teamsGrid.appendChild(card);
-      });
-    }
-
-    function renderFavs(){
-      favList.innerHTML = "";
-      if (selected.length === 0){
-        favList.innerHTML = '<div class="empty">Aucun favori — clique sur une équipe pour l\'ajouter.</div>';
-        return;
-      }
-      selected.forEach(id => {
-        const t = ALL_TEAMS.find(x => x.id === id) || {id, name:id, region:"?"};
-        const item = document.createElement("div");
-        item.className = "fav-item";
-        item.innerHTML = `<div class="row"><div style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;font-weight:700;margin-right:8px">${t.id}</div><div><div style="font-weight:700">${t.name}</div><div style="font-size:12px;color:var(--muted)">${t.region}</div></div></div>
-        <div style="display:flex;gap:8px;align-items:center"><button class="btn" data-id="${id}" aria-label="retirer ${id}">Suppr</button></div>`;
-        favList.appendChild(item);
-      });
-
-      // attach remove handlers
-      favList.querySelectorAll("button[data-id]").forEach(b => {
-        b.onclick = () => { toggleTeam(b.dataset.id); }
-      });
-    }
-
-    // --- actions ---
-    function toggleTeam(id){
-      if (inSelected(id)){
-        selected = selected.filter(x => x !== id);
-      } else {
-        selected.push(id);
-      }
-      save();
-      renderTeams();
-      renderFavs();
-    }
-
-    function clearAll(){
-      selected = [];
-      save();
-      renderTeams();
-      renderFavs();
-    }
-
-    function exportJSON(){
-      const payload = { teams: selected, date: new Date().toISOString() };
-      const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "mes-fav-lol.json";
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
-    }
-
-    function importJSONFile(file){
-      const reader = new FileReader();
-      reader.onload = e => {
-        try {
-          const parsed = JSON.parse(e.target.result);
-          if (Array.isArray(parsed)) selected = parsed;
-          else if (parsed && Array.isArray(parsed.teams)) selected = parsed.teams;
-          else throw new Error("Format JSON invalide");
-          save();
-          renderTeams();
-          renderFavs();
-          alert("Import réussi !");
-        } catch(err){
-          alert("Impossible d'importer : format invalide");
-        }
-      };
-      reader.readAsText(file);
-    }
-
-    function copyShareLink(){
-      const payload = encodeURIComponent(JSON.stringify(selected));
-      const url = `${location.origin}${location.pathname}?fav=${payload}`;
-      if (navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(url).then(()=>alert("Lien copié dans le presse-papiers !"));
-      } else {
-        prompt("Copie le lien ci-dessous :", url);
-      }
-    }
-
-    function copyIDs(){
-      if (selected.length === 0){ alert("Aucun favori à copier."); return; }
-      const text = selected.join(",");
-      navigator.clipboard?.writeText(text);
-      alert("IDs copiés : " + text);
-    }
-
-    // parse ?fav= param if present (restore)
-    function tryLoadFromParam(){
-      const p = new URLSearchParams(location.search).get("fav");
-      if (!p) return false;
-      try {
-        const decoded = JSON.parse(decodeURIComponent(p));
-        if (Array.isArray(decoded)){
-          selected = decoded;
-          save();
-          return true;
-        }
-      } catch(e){
-        console.warn("param fav invalide", e);
-      }
-      return false;
-    }
-
-    // --- init ---
-    load();
-    tryLoadFromParam(); // overrides localStorage if URL has fav param
-    renderTeams();
-    renderFavs();
-
-    // --- events ---
-    searchInput.addEventListener("input", ()=>renderTeams());
-    onlyFavs.addEventListener("change", ()=>renderTeams());
-    document.getElementById("clearBtn").addEventListener("click", ()=>{ if(confirm("Supprimer tous les favoris ?")) clearAll(); });
-    document.getElementById("exportBtn").addEventListener("click", exportJSON);
-    document.getElementById("copyBtn").addEventListener("click", copyIDs);
-    document.getElementById("shareBtn").addEventListener("click", copyShareLink);
-    document.getElementById("backBtn").addEventListener("click", ()=>history.back());
-    document.getElementById("importBtn").addEventListener("click", ()=>document.getElementById("fileInput").click());
-    document.getElementById("fileInput").addEventListener("change", (e)=> {
-      const f = e.target.files && e.target.files[0];
-      if (f) importJSONFile(f);
-      e.target.value = "";
-    });
-
-    // keyboard accessibility: Enter on focused team toggles it (delegation)
-    teamsGrid.addEventListener("keydown", (ev) => {
-      if(ev.key === "Enter" && ev.target.classList.contains("team")){
-        ev.target.click();
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
