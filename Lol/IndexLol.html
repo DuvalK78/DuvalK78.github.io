@@ -48,20 +48,7 @@
 		  height: 500px;
 		  gap: 10px;
 		}
-		.back-button {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 14px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-		> div {
+		.container div {
 		    flex: 0 0 120px;
 		    border-radius: 0.5rem;
 		    transition: 0.5s ease-in-out;
@@ -70,11 +57,11 @@
 		    position: relative;
 		    overflow: hidden;
 		}
-		&:nth-of-type(1) {
+		.container div:nth-of-type(1) {
 		    background: url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg")
 		    no-repeat 50% / cover;
     	}
-		 .content {
+		 .container div .content {
 		    font-size: 1.5rem;
 		    color: #fff;
 		    display: flex;
@@ -101,17 +88,30 @@
 	      }
 	    }
 
-	    &:hover {
+	    .container div:hover {
 	       flex: 0 0 250px;
 	       box-shadow: 1px 3px 15px #7645d8;
 	       transform: translatey(-30px);
 	    }
 	
-	    &:hover .content {
+	    .container div:hover .content {
 	       opacity: 1;
 	       transform: translatey(0%);
 	       visibility: visible;
 	    }
+		.back-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
         .back-button:hover {
            background-color: #34495e;
         }
@@ -134,6 +134,7 @@
          <span>Mage</span>
         </div>
       </div>
+	</div>
         <!--<select name="Champions" onchange="navigateToPage(this)">
             <option value="" selected>-- Sélectionnez un champion --</option>
 			<option value="Ahri.html">Ahri</option>
@@ -198,6 +199,7 @@
 	</div>
 </body>
 </html>
+
 
 
 
