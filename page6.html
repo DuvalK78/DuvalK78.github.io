@@ -54,12 +54,13 @@
                 console.log('Bouton de téléchargement cliqué'); const element = 
                     document.querySelector('.container-cv'); if (element) { 
                     console.log('Élément .container-cv trouvé'); 
-                    html2pdf().from(element).save('CV_Kerian_Duval.pdf').then(() => { 
+                    html2pdf().from(element).save('Kerian_Duval.pdf').then(() => { 
                         console.log('PDF généré avec succès'); }).catch(err => { 
                         console.error('Erreur lors de la génération du PDF:', err);}); } 
                 else { console.error('Élément .container-cv non trouvé'); } }); 
         </script> 
     </body> 
 </html>
+
 
 
