@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Faker — T1 Player Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#05060a;
+      --panel:#0b0d12;
+      --muted:#9aa4b2;
+      --accent:#e2012d;
+      --accent-2:#ff6b6b;
+      --accent-blue: rgba(24, 54, 99, 0.08);
+      --glass: rgba(255,255,255,0.03);
+      --card-radius:14px;
+      --max-width:920px;
+      --fade-time:520ms;
+    }
+
+    *{ box-sizing:border-box }
+
+    html,body{ height:100%; margin:0 }
+
+    body{
+      font-family:"Rajdhani",Verdana,Arial,sans-serif;
+      background:
+        radial-gradient(900px 420px at 8% 8%, rgba(200,40,40,0.05), transparent 8%),
+        radial-gradient(600px 300px at 92% 20%, rgba(20,60,140,0.025), transparent 10%),
+        linear-gradient(180deg,var(--bg), #05040a 65%);
+      color:#e8eef6;
+      padding:28px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      display:flex;
+      flex-direction:column;
+      gap:25px;
+      align-items:center;
+    }
+
+    /* BLOCKS ALIGNMENT (LEFT + RIGHT) */
+    .dual-row{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:20px;
+    }
+
+    .left-block, .right-block{
+      flex:1;
+    }
+
+    /* MAIN PROFILE CARD */
+    .card{
+      width:100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--card-radius);
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 12px 50px rgba(0,0,0,0.6);
+      overflow:visible;
+    }
+
+    .portrait{
+      width:180px;
+      height:180px;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.05);
+      position:relative;
+      background:linear-gradient(180deg,#0e1116,#111318);
+      transition:transform 350ms ease, box-shadow 350ms ease;
+    }
+    .portrait img{ width:100%; height:100%; object-fit:cover; display:block }
+
+    .portrait::after{
+      content:"";
+      position:absolute; inset:0;
+      border-radius:inherit;
+      background:
+        radial-gradient(60% 40% at 30% 20%, rgba(255,215,130,0.06), transparent 30%),
+        radial-gradient(70% 50% at 80% 80%, var(--accent-blue), transparent 26%);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity 320ms ease;
+    }
+
+    .portrait:hover{
+      transform: translateY(-8px) scale(1.02);
+      box-shadow:0 30px 80px rgba(10,10,10,0.75);
+    }
+    .portrait:hover::after{ opacity:1 }
+
+    .meta{ text-align:center }
+
+    .tag{
+      padding:6px 12px;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;
+      font-weight:700;
+      font-size:13px;
+      display:inline-block;
+    }
+
+    .player-name{
+      font-size:30px;
+      font-weight:700;
+      margin-top:8px;
+      letter-spacing:0.6px;
+    }
+
+    .player-role{
+      color:var(--muted);
+      margin-top:6px;
+      font-size:14px;
+    }
+
+    .right{ display:flex; flex-direction:column; gap:14px }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:12px;
+    }
+
+    .stat{
+      background:var(--panel);
+      padding:12px;
+      border-radius:12px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.03);
+      opacity:0;
+      transform:translateY(10px);
+      transition: transform var(--fade-time) ease, opacity var(--fade-time) ease;
+    }
+
+    .stat.visible{ opacity:1; transform:none }
+
+    .stat .num{ font-size:18px; font-weight:700 }
+    .stat .label{ font-size:12px; margin-top:6px; color:var(--muted) }
+
+    .bio{
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      line-height:1.5;
+      color:var(--muted);
+    }
+.performance{
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    }
+
+    .performance h3{
+      margin:0 0 10px 0;
+      font-size:16px;
+    }
+
+    .bar-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:10px;
+      opacity:0;
+      transform:translateY(6px);
+      transition:all 520ms cubic-bezier(.15,.9,.2,1);
+    }
+
+    .bar-row.visible{ opacity:1; transform:none }
+
+    .metric-name{
+      width:140px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .bar-wrap{
+      flex:1;
+      background:rgba(255,255,255,0.03);
+      height:12px;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
+    .bar{
+      height:100%;
+      border-radius:10px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      width:0%;
+      transition:width 900ms cubic-bezier(.2,.9,.25,1);
+    }
+
+    .champions{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(90px,1fr));
+      gap:14px;
+    }
+
+    .champion-card{
+      background:rgba(255,255,255,0.02);
+      padding:10px;
+      border-radius:10px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.03);
+      transition:transform .2s;
+    }
+
+    .champion-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 20px rgba(0,0,0,0.6);
+    }
+
+    .champion-icon{
+      width:54px;
+      height:54px;
+      margin:0 auto 6px;
+      border-radius:50%;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.04);
+    }
+
+    .champion-icon img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .champion-winrate{
+      font-size:14px;
+      font-weight:700;
+      color:var(--accent);
+    }
+
+    .palmares{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      width:100%;
+    }
+
+    .pr-item{
+      display:flex;
+      justify-content:space-between;
+      padding:10px;
+      border-radius:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border:1px solid rgba(255,255,255,0.02);
+      color:var(--muted);
+      font-size:14px;
+      opacity:0;
+      transform:translateY(10px);
+      transition:transform var(--fade-time) ease, opacity var(--fade-time) ease;
+    }
+
+    .pr-item.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    .back{
+      margin-top:20px;
+      display:flex;
+      justify-content:flex-start;
+      width:100%;
+    }
+
+    .back a{
+      color:var(--accent);
+      font-weight:700;
+      padding:8px 12px;
+      border-radius:10px;
+      text-decoration:none;
+      border:1px solid rgba(170,139,48,0.15);
+    }
+
+    @media(max-width:800px){
+      .dual-row{
+        flex-direction:column;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container" role="main" aria-labelledby="playerTitle">
+
+    <!-- ======================================
+                 CENTER : PROFILE CARD
+    ======================================= -->
+    <div class="card">
+
+      <div style="display:flex;justify-content:center;gap:20px;">
+        <div class="portrait" id="portrait">
+          <img src="https://images.weserv.nl/?url=static.wikia.nocookie.net/lolesports_gamepedia_en/images/c/c8/T1_Faker_2025_Split_3.png/revision/latest?cb=20251011135603" alt="Portrait Faker">
+        </div>
+
+        <div class="meta">
+          <div class="tag">T1 • MID</div>
+          <div class="player-name" id="playerTitle">Faker</div>
+          <div class="player-role">Mid Laner — South Korea</div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-weight:700;font-size:18px">Profil joueur</div>
+          <div style="font-size:13px;color:var(--muted)">Fiche individuelle</div>
+        </div>
+
+        <!-- ===========================
+             CENTER : BIOGRAPHIE
+        ============================ -->
+<div class="bio">
+  Légende vivante de League of Legends,
+  <strong>Faker</strong> allie excellence mécanique, intelligence de jeu
+  et une longévité incomparable au plus haut niveau.
+  Sa capacité à contrôler le rythme des parties et à briller dans les moments décisifs
+  fait de lui le pilier emblématique de T1 et une référence absolue sur la scène mondiale.
+</div>
+
+        <!-- =========================================
+               PAIRE 1 : STATS RIGHT + STATS LEFT
+        ========================================== -->
+        <div class="dual-row">
+
+          <!-- RIGHT : THIS SEASON -->
+          <div class="right-block">
+            <h3 style="margin:6px 0;">Stats — This Season</h3>
+            <div class="stats-grid">
+              <div class="stat" data-anim><div class="num">4.3</div><div class="label">KDA</div></div>
+              <div class="stat" data-anim><div class="num">685.4</div><div class="label">Damage Per Minute</div></div>
+              <div class="stat" data-anim><div class="num">25</div><div class="label">Solo kills</div></div>
+              <div class="stat" data-anim><div class="num">0.33</div><div class="label">K+A Per Minute</div></div>
+              <div class="stat" data-anim><div class="num">1</div><div class="label">Pentakills</div></div>
+              <div class="stat" data-anim><div class="num">8.5</div><div class="label">CS/min</div></div>
+              <div class="stat" data-anim><div class="num">409</div><div class="label">GPM</div></div>
+              <div class="stat" data-anim><div class="num">106-63</div><div class="label">W-L</div></div>
+            </div>
+          </div>
+
+          <!-- LEFT : ALL TIME -->
+          <div class="left-block">
+            <h3 style="margin:6px 0;">Stats — All Time</h3>
+            <div class="stats-grid">
+              <div class="stat" data-anim><div class="num">4.2</div><div class="label">KDA</div></div>
+              <div class="stat" data-anim><div class="num">553.9</div><div class="label">Damage Per Minute</div></div>
+              <div class="stat" data-anim><div class="num">332</div><div class="label">Solo kills</div></div>
+              <div class="stat" data-anim><div class="num">0.27</div><div class="label">K+A Per Minute</div></div>
+              <div class="stat" data-anim><div class="num">1</div><div class="label">Pentakills</div></div>
+              <div class="stat" data-anim><div class="num">8.8</div><div class="label">CS/min</div></div>
+              <div class="stat" data-anim><div class="num">412</div><div class="label">GPM</div></div>
+              <div class="stat" data-anim><div class="num">968-485</div><div class="label">W-L</div></div>
+            </div>
+          </div>
+        </div>
+<!-- =========================================
+               PAIRE 2 : PERFORMANCE RIGHT + LEFT
+        ========================================== -->
+        <div class="dual-row">
+
+          <!-- RIGHT : THIS SEASON -->
+          <div class="right-block">
+            <div class="performance">
+              <h3>Performance — This Season</h3>
+
+              <div class="bar-row" data-value="62.7">
+                <div class="metric-name">WIN Rate</div>
+                <div class="bar-wrap"><div class="bar" data-fill="62.7"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">62.7%</div>
+              </div>
+
+              <div class="bar-row" data-value="62.9">
+                <div class="metric-name">KP</div>
+                <div class="bar-wrap"><div class="bar" data-fill="62.9"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">62.9%</div>
+              </div>
+
+              <div class="bar-row" data-value="47.9">
+                <div class="metric-name">Ahead in CS at 15 min</div>
+                <div class="bar-wrap"><div class="bar" data-fill="47.9"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">47.9%</div>
+              </div>
+
+              <div class="bar-row" data-value="14.8">
+                <div class="metric-name">First Blood Participation</div>
+                <div class="bar-wrap"><div class="bar" data-fill="14.8"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">14.8%</div>
+              </div>
+
+              <div class="bar-row" data-value="13.6">
+                <div class="metric-name">First Blood Victim</div>
+                <div class="bar-wrap"><div class="bar" data-fill="13.6"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">13.6%</div>
+              </div>
+
+              <div class="bar-row" data-value="24.3">
+                <div class="metric-name">Damage%</div>
+                <div class="bar-wrap"><div class="bar" data-fill="24.3"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">24.3%</div>
+              </div>
+              
+            </div>
+          </div>
+
+          <!-- LEFT : ALL TIME -->
+          <div class="left-block">
+            <div class="performance">
+              <h3>Performance — All Time</h3>
+
+              <div class="bar-row" data-value="66.6">
+                <div class="metric-name">WIN Rate</div>
+                <div class="bar-wrap"><div class="bar" data-fill="66.6"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">66.6%</div>
+              </div>
+
+              <div class="bar-row" data-value="64.3">
+                <div class="metric-name">KP</div>
+                <div class="bar-wrap"><div class="bar" data-fill="64.3"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">64.3%</div>
+              </div>
+
+              <div class="bar-row" data-value="55.8">
+                <div class="metric-name">Ahead in CS at 15 min</div>
+                <div class="bar-wrap"><div class="bar" data-fill="55.8"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">55.8%</div>
+              </div>
+
+              <div class="bar-row" data-value="19.2">
+                <div class="metric-name">First Blood Participation</div>
+                <div class="bar-wrap"><div class="bar" data-fill="19.2"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">19.2%</div>
+              </div>
+
+              <div class="bar-row" data-value="9.2">
+                <div class="metric-name">First Blood Victim</div>
+                <div class="bar-wrap"><div class="bar" data-fill="9.2"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">9.2%</div>
+              </div>
+
+              <div class="bar-row" data-value="25.7">
+                <div class="metric-name">Damage%</div>
+                <div class="bar-wrap"><div class="bar" data-fill="25.7"></div></div>
+                <div style="width:42px;text-align:right;font-weight:700;color:var(--muted)">25.7%</div>
+              </div>
+              
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- =========================================
+               PAIRE 3 : CHAMPIONS RIGHT + LEFT
+        ========================================== -->
+        <div class="dual-row">
+
+          <!-- RIGHT : THIS SEASON -->
+          <div class="right-block">
+            <section class="panel">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <h3>Pool de Champions</h3>
+                <small style="color:var(--muted)">Top 5 sur la saison</small>
+              </div>
+
+              <div class="champions">
+                <div class="champion-card">
+                  <div class="champion-icon"><img src="https://ddragon.leagueoflegends.com/cdn/14.21.1/img/champion/Viktor.png"></div>
+                  <div class="champion-winrate">64% WR</div>
+                  <small style="color:var(--muted)">25 Games</small>
+                </div>
+
+                <div class="champion-card">
+                  <div class="champion-icon"><img src="https://ddragon.leagueoflegends.com/cdn/14.21.1/img/champion/Ryze.png"></div>
+                  <div class="champion-winrate">61.1% WR</div>
+                  <small style="color:var(--muted)">18 Games</small>
+                </div>
+
+                <div class="champion-card">
+                  <div class="champion-icon"><img src="https://ddragon.leagueoflegends.com/cdn/14.21.1/img/champion/Orianna.png"></div>
+                  <div class="champion-winrate">77.8% WR</div>
+                  <small style="color:var(--muted)">18 Games</small>
+                </div>
+
+                <div class="champion-card">
+                  <div class="champion-icon"><img src="https://ddragon.leagueoflegends.com/cdn/14.21.1/img/champion/Galio.png"></div>
+                  <div class="champion-winrate">50% WR</div>
+                  <small style="color:var(--muted)">18 Games</small>
+                </div>
+
+                <div class="champion-card">
+                  <div class="champion-icon"><img src="https://ddragon.leagueoflegends.com/cdn/14.21.1/img/champion/Azir.png"></div>
+                  <div class="champion-winrate">81.3% WR</div>
+                  <small style="color:var(--muted)">16 Games</small>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- LEFT : ALL TIME -->
+          <div class="left-block">
+            <section class="panel">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <h3>Pool de Champions</h3>
+                <small style="color:var(--muted)">Top 5 all time</small>
+              </div>
+
+              <div class="champions">
+                <div class="champion-card">
+                  <div class="champion-icon"><img src="https://ddragon.leagueoflegends.com/cdn/14.21.1/img/champion/Azir.png"></div>
+                  <div class="champion-winrate">70.1% WR</div>
+                  <small style="color:var(--muted)">197 Games</small>
+                </div>
+
+                <div class="champion-card">
+                  <div class="champion-icon"><img src="https://ddragon.leagueoflegends.com/cdn/14.21.1/img/champion/Orianna.png"></div>
+                  <div class="champion-winrate">73.4% WR</div>
+                  <small style="color:var(--muted)">94 Games</small>
+                </div>
+
+                <div class="champion-card">
+                  <div class="champion-icon"><img src="https://ddragon.leagueoflegends.com/cdn/14.21.1/img/champion/Ryze.png"></div>
+                  <div class="champion-winrate">63.5% WR</div>
+                  <small style="color:var(--muted)">85 Games</small>
+                </div>
+
+                <div class="champion-card">
+                  <div class="champion-icon"><img src="https://ddragon.leagueoflegends.com/cdn/14.21.1/img/champion/Corki.png"></div>
+                  <div class="champion-winrate">66.3% WR</div>
+                  <small style="color:var(--muted)">83 Games</small>
+                </div>
+
+                <div class="champion-card">
+                  <div class="champion-icon"><img src="https://ddragon.leagueoflegends.com/cdn/14.21.1/img/champion/Galio.png"></div>
+                  <div class="champion-winrate">59.2% WR</div>
+                  <small style="color:var(--muted)">71 Games</small>
+                </div>
+              </div>
+            </section>
+          </div>
+
+        </div>
+
+
+        <!-- ================================
+                 CENTER : PALMARÈS
+        ================================= -->
+        <div class="palmares">
+          <div style="font-weight:700">Palmarès & réalisations</div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>LCK Champion</strong></div>
+            <div>10×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>LCK Season MVP</strong></div>
+            <div>2×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>LCK Finals MVP</strong></div>
+            <div>1×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>LCK Player of the Year</strong></div>
+            <div>2×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>LCK Mid Laner of the Year</strong></div>
+            <div>2×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>LCK All-Pro First Team</strong></div>
+            <div>2×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>LCK All-Pro Second Team</strong></div>
+            <div>2×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>LCK All-Pro Third Team</strong></div>
+            <div>1×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>MSI Champion</strong></div>
+            <div>2×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>MSI MVP</strong></div>
+            <div>1×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>Worlds Champion</strong></div>
+            <div>6×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>Worlds MVP</strong></div>
+            <div>2×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>Esports World Cup</strong></div>
+            <div>1×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>Esports World Cup MVP</strong></div>
+            <div>1×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>Jeux asiatiques</strong></div>
+            <div>1×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>Rift Rivals champion</strong></div>
+            <div>1×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>IEM champion</strong></div>
+            <div>1×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>All-Star Invitational champion</strong></div>
+            <div>1×</div>
+          </div>
+
+          <div class="pr-item" data-anim>
+            <div><strong>NLB champion</strong></div>
+            <div>1×</div>
+          </div>
+
+        </div>
+
+        <!-- ================================
+                 CENTER : BACK LINK
+        ================================= -->
+        <div class="back">
+          <a href="../T1.html">← Retour à T1 Stats</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const options={threshold:0.12};
+      const io=new IntersectionObserver((entries,obs)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      },options);
+
+      document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
+      document.querySelectorAll('.pr-item').forEach(el=>io.observe(el));
+
+      const barObserver=new IntersectionObserver((entries,obs)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            const bars=entry.target.querySelectorAll('.bar');
+            bars.forEach(bar=>{
+              const fill=bar.getAttribute('data-fill')||'0';
+              setTimeout(()=>{ bar.style.width=fill+'%'; },120);
+            });
+
+            entry.target.querySelectorAll('.bar-row').forEach((r,i)=>{
+              setTimeout(()=>r.classList.add('visible'),80+i*80);
+            });
+
+            obs.unobserve(entry.target);
+          }
+        });
+      },{threshold:0.18});
+
+      document.querySelectorAll('.performance').forEach(p=>barObserver.observe(p));
+
+    })();
+  </script>
+</body>
+</html>
