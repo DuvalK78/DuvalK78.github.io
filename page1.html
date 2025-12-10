@@ -1,59 +1,494 @@
-<!DOCTYPE HTML>  
-<html lang="fr">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>À propos - Portfolio K. Duval</title>  
-    <!-- Lien vers Google Fonts -->  
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">  
-    <!-- Lien vers Bootstrap -->  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">  
-    <!-- Lien vers ton fichier CSS -->  
-    <link rel="stylesheet" href="styles.css">  
-</head>  
-<body>  
-    <!-- Navigation -->  
-    <header class="navbar navbar-expand-lg navbar-dark fixed-top">  
-        <div class="container">  
-            <a href="index.html" class="navbar-brand">K.Duval</a>  
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">  
-                <span class="navbar-toggler-icon"></span>  
-            </button>  
-            <div class="collapse navbar-collapse" id="navbarNav">  
-                <ul class="navbar-nav ms-auto">  
-                    <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>  
-                    <li class="nav-item"><a href="page1.html" class="nav-link active">À propos de moi</a></li>  
-                    <li class="nav-item"><a href="page2.html" class="nav-link">Compétences</a></li>  
-                    <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>  
-                    <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>  
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Portfolio K. Duval</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+            overflow-x: hidden;
+        }
+
+        /* Navbar haute et accessible */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.2rem 0;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #212529 !important;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            color: #212529 !important;
+            font-weight: 600;
+            padding: 0.7rem 1.2rem !important;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .nav-link.active {
+            color: #667eea !important;
+        }
+
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #667eea !important;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Header Section */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -50px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .about-card {
+            background: #f8f9fa;
+            border: 3px solid #e9ecef;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .about-card h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .about-card h2 .icon {
+            font-size: 2.5rem;
+        }
+
+        .about-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #495057;
+            margin-bottom: 1rem;
+        }
+
+        .about-card strong {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            color: #212529;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-icon {
+            min-width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #ffffff;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            transform: translateX(10px);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .date {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .timeline-content p {
+            color: #495057;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: #f8f9fa;
+            border: 3px solid #e9ecef;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .value-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: #495057;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-custom {
+            padding: 1.2rem 3rem;
+            background: #ffffff;
+            border: none;
+            border-radius: 50px;
+            color: #667eea;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            color: #764ba2;
+        }
+
+        /* Footer */
+        footer {
+            background: #212529;
+            padding: 2rem 0;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .about-card h2 {
+                font-size: 1.6rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-content:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">K.Duval</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li class="nav-item"><a href="page1.html" class="nav-link active">À propos de moi</a></li>
+                    <li class="nav-item"><a href="page2.html" class="nav-link">Compétences</a></li>
+                    <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>
+                    <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>
                     <li class="nav-item"><a href="page7.html" class="nav-link">Certifications</a></li>
                     <li class="nav-item"><a href="page8.html" class="nav-link">Veille Technologique</a></li>
-                    <li class="nav-item"><a href="page5.html" class="nav-link">Contact</a></li>  
-                </ul>  
-            </div>  
-        </div>  
-    </header>  
+                    <li class="nav-item"><a href="page5.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-    <!-- Section À propos -->  
-    <main class="main-content">  
-        <section class="about-section text-center">  
-            <div class="container mb-5">  
-                <!-- <img src="profile.jpg" alt="Photo de K. Duval" class="profile-image"> -->  
-                <h1>À propos de moi</h1>  
-                <p>Je m'appelle Kerian Duval, étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong>.</p>  
-                <p>Passionné par l'informatique et les nouvelles technologies, j'ai décidé d'explorer ce domaine pour apporter des solutions innovantes et répondre aux besoins des entreprises.</p>  
-                <p>Depuis le début de ma formation en septembre, j'ai acquis des compétences en programmation, gestion de bases de données et administration systèmes.</p>  
-                <p>Je suis également motivé par le désir d'aider les autres à comprendre et à utiliser les outils technologiques de manière efficace et responsable.</p>  
-            </div>  
-        </section>  
-    </main>  
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>À propos de moi</h1>
+            <p>Découvrez mon parcours et ma passion pour l'informatique</p>
+        </div>
+    </section>
 
-    <!-- Footer -->  
-    <footer>  
-        <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>  
-    </footer>  
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="about-card">
+                        <h2><span class="icon">👨‍💻</span> Qui suis-je ?</h2>
+                        <p>Je m'appelle <strong>Kerian Duval</strong>, étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong>, spécialité SISR.</p>
+                        <p>Passionné par l'informatique et les nouvelles technologies, j'ai décidé d'explorer ce domaine pour apporter des solutions innovantes et répondre aux besoins des entreprises en matière d'infrastructures systèmes et réseaux.</p>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Lien vers les fichiers JS -->  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>  
-</body>  
+            <div class="row mt-4">
+                <div class="col-lg-6">
+                    <div class="about-card">
+                        <h2><span class="icon">🎯</span> Ma formation</h2>
+                        <p>Depuis le début de ma formation en septembre, j'ai acquis des compétences solides en :</p>
+                        <p><strong>• Administration systèmes</strong> (Windows Server, Linux)</p>
+                        <p><strong>• Gestion de réseaux</strong> (TCP/IP, routage, commutation)</p>
+                        <p><strong>• Sécurité informatique</strong> (pare-feu, VPN, politiques de sécurité)</p>
+                        <p><strong>• Virtualisation</strong> et gestion d'infrastructures</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="about-card">
+                        <h2><span class="icon">💡</span> Ma motivation</h2>
+                        <p>Je suis motivé par le désir d'aider les autres à comprendre et à utiliser les outils technologiques de manière efficace et responsable.</p>
+                        <p>Mon objectif est de devenir un professionnel capable de concevoir, déployer et maintenir des infrastructures informatiques robustes et sécurisées.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Mon parcours</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">📚</div>
+                <div class="timeline-content">
+                    <h3>BTS SIO - SISR</h3>
+                    <span class="date">Septembre 2024 - Présent</span>
+                    <p>Formation en Solutions d'Infrastructures, Systèmes et Réseaux. Apprentissage des technologies réseau, administration système, virtualisation et sécurité informatique.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-icon">🎓</div>
+                <div class="timeline-content">
+                    <h3>Découverte de l'informatique</h3>
+                    <span class="date">Années précédentes</span>
+                    <p>Développement d'une passion pour les nouvelles technologies et l'informatique. Premières expériences en résolution de problèmes techniques et exploration des systèmes informatiques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title">Mes valeurs</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">🚀</div>
+                        <h3>Innovation</h3>
+                        <p>Toujours à la recherche de solutions nouvelles et créatives pour résoudre les défis technologiques.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <h3>Collaboration</h3>
+                        <p>Le travail d'équipe et le partage des connaissances sont essentiels pour progresser ensemble.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">📈</div>
+                        <h3>Apprentissage continu</h3>
+                        <p>Dans un domaine en constante évolution, je m'engage à me former continuellement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Intéressé par mon profil ?</h2>
+            <p>N'hésitez pas à consulter mes compétences et expériences, ou à me contacter directement.</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="page2.html" class="btn-custom">Mes compétences</a>
+                <a href="page5.html" class="btn-custom">Me contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
