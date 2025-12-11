@@ -1,64 +1,547 @@
-<!DOCTYPE HTML>  
-<html lang="fr">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Compétences - Portfolio K. Duval</title>  
-    <!-- Lien vers Google Fonts -->  
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">  
-    <!-- Lien vers Bootstrap -->  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">  
-    <!-- Lien vers ton fichier CSS -->  
-    <link rel="stylesheet" href="styles.css">  
-</head>  
-<body>  
-    <!-- Navigation -->  
-    <header class="navbar navbar-expand-lg navbar-dark fixed-top">  
-        <div class="container">  
-            <a href="index.html" class="navbar-brand">K.Duval</a>  
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">  
-                <span class="navbar-toggler-icon"></span>  
-            </button>  
-            <div class="collapse navbar-collapse" id="navbarNav">  
-                <ul class="navbar-nav ms-auto">  
-                    <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>  
-                    <li class="nav-item"><a href="page1.html" class="nav-link">À propos de moi</a></li>  
-                    <li class="nav-item"><a href="page2.html" class="nav-link active">Compétences</a></li>  
-                    <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>  
-                    <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>  
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compétences - Portfolio K. Duval</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+            overflow-x: hidden;
+        }
+
+        /* Navbar haute et accessible */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.2rem 0;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #212529 !important;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            color: #212529 !important;
+            font-weight: 600;
+            padding: 0.7rem 1.2rem !important;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .nav-link.active {
+            color: #667eea !important;
+        }
+
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #667eea !important;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -120px;
+            right: -80px;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            bottom: -80px;
+            left: -50px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-intro h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #212529;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-intro p {
+            font-size: 1.2rem;
+            color: #495057;
+            line-height: 1.8;
+        }
+
+        /* Skill Cards */
+        .skill-category {
+            background: #f8f9fa;
+            border: 3px solid #e9ecef;
+            border-radius: 25px;
+            padding: 3rem 2.5rem;
+            height: 100%;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .skill-category:hover {
+            border-color: #667eea;
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.2);
+            transform: translateY(-10px);
+            background: #ffffff;
+        }
+
+        .skill-category:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-icon {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .skill-category h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-category p {
+            font-size: 1.1rem;
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2.5rem;
+        }
+
+        .skill-list li {
+            padding: 0.8rem 0;
+            color: #495057;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .skill-list li::before {
+            content: '✓';
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.3rem;
+            min-width: 20px;
+        }
+
+        .btn-detail {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-detail:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            color: #ffffff;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: #495057;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-white {
+            padding: 1.2rem 3rem;
+            background: #ffffff;
+            border: none;
+            border-radius: 50px;
+            color: #667eea;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            color: #764ba2;
+        }
+
+        /* Footer */
+        footer {
+            background: #212529;
+            padding: 2rem 0;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+            }
+
+            .section-intro h2 {
+                font-size: 2rem;
+            }
+
+            .skill-category h3 {
+                font-size: 1.6rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">K.Duval</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li class="nav-item"><a href="page1.html" class="nav-link">À propos de moi</a></li>
+                    <li class="nav-item"><a href="page2.html" class="nav-link active">Compétences</a></li>
+                    <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>
+                    <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>
                     <li class="nav-item"><a href="page7.html" class="nav-link">Certifications</a></li>
                     <li class="nav-item"><a href="page8.html" class="nav-link">Veille Technologique</a></li>
-                    <li class="nav-item"><a href="page5.html" class="nav-link">Contact</a></li>  
-                </ul>  
-            </div>  
-        </div>  
-    </header>  
+                    <li class="nav-item"><a href="page5.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-    <!-- Section Compétences -->  
-    <main class="main-content">  
-        <section class="about-section text-center">  
-            <div class="container">  
-                <h1>Mes Compétences</h1>  
-                <p>  
-                    Étudiant en BTS SIO1 au Lycée Notre Dame de la Providence d’Avranches,   
-                    j'ai acquis des compétences aussi bien en Solutions d'Infrastructure,   
-                    Systèmes et Réseaux qu'en Solutions Logicielles et Applications Métiers.  
-                </p><br>  
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="systemes-et-reseaux.html" class="btn btn-gradient">Systèmes et Réseaux</a>  
-                    <a href="programmation.html" class="btn btn-gradient">Programmation</a>
-                    <a href="cybersecurite.html" class="btn btn-gradient">Cybersécurité</a>  
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Mes Compétences</h1>
+            <p>
+                Étudiant en BTS SIO1 au Lycée Notre Dame de la Providence d'Avranches, 
+                j'ai acquis des compétences aussi bien en Solutions d'Infrastructure, 
+                Systèmes et Réseaux qu'en Solutions Logicielles et Applications Métiers.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Domaines d'expertise</h2>
+                <p>
+                    Ma formation me permet de maîtriser trois domaines complémentaires essentiels 
+                    dans le monde de l'informatique moderne.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Systèmes et Réseaux -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-category">
+                        <div class="skill-icon">🌐</div>
+                        <h3>Systèmes et Réseaux</h3>
+                        <p>
+                            Administration d'infrastructures IT, gestion de réseaux et virtualisation.
+                        </p>
+                        <ul class="skill-list">
+                            <li>Administration Windows Server & Linux</li>
+                            <li>Configuration réseau TCP/IP</li>
+                            <li>Routage et commutation</li>
+                            <li>Virtualisation (VMware, Hyper-V)</li>
+                            <li>Active Directory & GPO</li>
+                        </ul>
+                        <a href="systemes-et-reseaux.html" class="btn-detail">Voir les détails</a>
+                    </div>
                 </div>
-            </div>  
-        </section>  
-    </main>  
 
-    <!-- Footer -->  
-    <footer>  
-        <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>  
-    </footer>  
+                <!-- Programmation -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-category">
+                        <div class="skill-icon">💻</div>
+                        <h3>Programmation</h3>
+                        <p>
+                            Développement d'applications et solutions logicielles métiers.
+                        </p>
+                        <ul class="skill-list">
+                            <li>Langages : Python, PHP, JavaScript</li>
+                            <li>Gestion de bases de données SQL</li>
+                            <li>Développement web (HTML, CSS)</li>
+                            <li>Scripts d'automatisation</li>
+                            <li>Programmation orientée objet</li>
+                        </ul>
+                        <a href="programmation.html" class="btn-detail">Voir les détails</a>
+                    </div>
+                </div>
 
-    <!-- Lien vers les fichiers JS -->  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>  
-</body>  
+                <!-- Cybersécurité -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-category">
+                        <div class="skill-icon">🔒</div>
+                        <h3>Cybersécurité</h3>
+                        <p>
+                            Sécurisation des systèmes et protection des infrastructures.
+                        </p>
+                        <ul class="skill-list">
+                            <li>Pare-feu et règles de filtrage</li>
+                            <li>VPN et tunnels sécurisés</li>
+                            <li>Politiques de sécurité</li>
+                            <li>Gestion des accès et identités</li>
+                            <li>Sensibilisation à la sécurité</li>
+                        </ul>
+                        <a href="cybersecurite.html" class="btn-detail">Voir les détails</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Domaines de compétences</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Technologies maîtrisées</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">BTS</div>
+                        <div class="stat-label">SIO SISR en cours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Découvrez mes réalisations</h2>
+            <p>
+                Consultez mes expériences professionnelles et les projets concrets 
+                que j'ai réalisés dans le cadre de ma formation.
+            </p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="page3.html" class="btn-white">Mes expériences</a>
+                <a href="page7.html" class="btn-white">Mes certifications</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-category, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
 </html>
