@@ -1,124 +1,468 @@
-<!DOCTYPE HTML>  
-<html lang="fr">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Systèmes et Réseaux - Portfolio K. Duval</title>  
-    <!-- Lien vers Google Fonts -->  
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">  
-    <!-- Lien vers Bootstrap -->  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">  
-    <!-- Lien vers ton fichier CSS -->  
-    <link rel="stylesheet" href="styles.css">  
-    <style>  
-        /* Styles spécifiques pour cette page */  
-        .about-section {  
-            background-color: #f8f9fa;  
-            padding: 80px 20px;  
-        }  
-        .about-section h1 {  
-            font-size: 2.5rem;  
-            font-weight: bold;  
-            margin-bottom: 20px;  
-        }  
-        .about-section p {  
-            font-size: 1.2rem;  
-            color: #333;  
-        }  
-        .about-section ul {  
-            text-align: left;  
-            margin-top: 20px;  
-            padding-left: 1.5rem;  
-        }  
-        .about-section ul li {  
-            font-size: 1rem;  
-            margin-bottom: 10px;  
-        }  
-		.btn-return {
-			margin-top: 20px;
-			display: inline-block;
-			color: #007AFF; /* Couleur du texte */
-			padding: 5px 15px;
-			font-size: 1rem;
-			border: 2px solid #000; /* Bordure de la même couleur que le texte */
-			border-left: 5px 15px;
-			border-right: 5px 15px;
-			border-radius: 70px; /* Arrondi pour les côtés */
-			text-decoration: none;
-			transition: color 0.3s, border-color 0.3s;
-			transition: transform 0.3s ease;
-		}
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Systèmes et Réseaux - Portfolio K. Duval</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-		.btn-return:hover {
-			color: #005fff; /* Couleur au survol */
-			border-color: #000; /* Changement de couleur de la bordure au survol */
-		}
-		
-		.btn-return:active {  
-			transform: scale(0.90);
-		}
-  
-    </style>  
-</head>  
-<body>  
-    <!-- Navigation -->  
-    <header class="navbar navbar-expand-lg fixed-top">  
-        <div class="container">  
-            <a href="index.html" class="navbar-brand">K.Duval</a>  
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">  
-                <span class="navbar-toggler-icon"></span>  
-            </button>  
-            <div class="collapse navbar-collapse" id="navbarNav">  
-                <ul class="navbar-nav ms-auto">  
-                    <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>  
-                    <li class="nav-item"><a href="page1.html" class="nav-link">À propos de moi</a></li>  
-                    <li class="nav-item"><a href="page2.html" class="nav-link active">Compétences</a></li>  
-                    <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>  
-		    <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>  
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.2rem 0;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #212529 !important;
+        }
+
+        .nav-link {
+            color: #212529 !important;
+            font-weight: 600;
+            padding: 0.7rem 1.2rem !important;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .nav-link.active {
+            color: #667eea !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #667eea !important;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '🌐';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .intro-section {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #212529;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .skill-item {
+            background: #f8f9fa;
+            border: 3px solid #e9ecef;
+            border-left: 5px solid #667eea;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-left-color: #764ba2;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            transform: translateX(10px);
+            background: #ffffff;
+        }
+
+        .skill-item h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            min-width: 40px;
+        }
+
+        .skill-item p {
+            color: #495057;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin: 0;
+        }
+
+        .skill-item strong {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        /* Categories */
+        .category-section {
+            margin-bottom: 4rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #212529;
+            margin: 0;
+        }
+
+        /* Navigation Buttons */
+        .navigation-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            text-align: center;
+        }
+
+        .btn-return {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-return:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            color: #ffffff;
+        }
+
+        /* Footer */
+        footer {
+            background: #212529;
+            padding: 2rem 0;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .skill-item:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">K.Duval</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li class="nav-item"><a href="page1.html" class="nav-link">À propos de moi</a></li>
+                    <li class="nav-item"><a href="page2.html" class="nav-link active">Compétences</a></li>
+                    <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>
+                    <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>
                     <li class="nav-item"><a href="page7.html" class="nav-link">Certifications</a></li>
-		    <li class="nav-item"><a href="page8.html" class="nav-link">Veille Technologique</a></li>
-                    <li class="nav-item"><a href="page5.html" class="nav-link">Contact</a></li>  
-                </ul>  
-            </div>  
-        </div>  
-    </header>  
+                    <li class="nav-item"><a href="page8.html" class="nav-link">Veille Technologique</a></li>
+                    <li class="nav-item"><a href="page5.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-    <!-- Section Systèmes et Réseaux -->  
-    <section class="about-section text-center">  
-        <div class="container">  
-            <h1>Systèmes et Réseaux</h1>  
-            <p>  
-                Au cours de ma formation en BTS Services Informatiques aux Organisations, j’ai eu l’opportunité de découvrir et de mettre en pratique plusieurs technologies essentielles dans le domaine des systèmes et réseaux. Voici un aperçu de mes compétences développées jusqu'à présent :  
-            </p>  
-            <ul>  
-                <li><strong>Installation de machines virtuelles :</strong> Utilisation de Proxmox et VirtualBox pour installer des machines virutelles tels que Debian 12, Windows Serveur 2022 et 2025, Windows 10/11, ce qui permet de simuler des environnements de travail variés et de tester différentes configurations sans affecter le système hôte.</li> 
-                <li><strong>Installation d'un serveur de sauvegarde :</strong> Installation et utilisation d'un PBS (Proxmox Backup Server) afin de sauvegarder les machines virtuelles d'un serveur Proxmox.</li>
-                <li><strong>Contrôleur de domaine Active Directory :</strong> Mise en place d'un contrôleur de domaine AD/DS, incluant la création de nouveaux utilisateurs, ce qui facilite la gestion des identités et des accès au sein d'un réseau d'entreprise.</li>  
-                <li><strong>Intégration de machines :</strong> Intégration d’une machine dans un domaine Active Directory pour centraliser la gestion des ressources et des utilisateurs.</li>  
-                <li><strong>Gestion des lecteurs réseau :</strong> Création et connexion de lecteurs réseau à l’aide de scripts et de stratégies GPO (Group Policy Objects), permettant une administration simplifiée des ressources partagées.</li>  
-                <li><strong>Déploiement d’imprimantes :</strong> Configuration de l’impression dans un environnement réseau via des stratégies GPO, assurant une accessibilité facile pour les utilisateurs.</li>  
-                <li><strong>GLPI pour gestion de helpdesk :</strong> Configuration de l'outil GLPI pour gérer les tickets de support, en intégrant un lien LDAP pour l'authentification des utilisateurs, et mise en place d'un agent GLPI pour un suivi optimal des équipements.</li>  
-                <li><strong>Nextcloud :</strong> Mise en route de Nextcloud, un outil de stockage et partage de fichiers, avec intégration d'une liaison LDAP pour gérer les utilisateurs de manière centralisée.</li>  
-                <li><strong>Compétences en adressage IP :</strong> Compréhension des principes de l'adressage IP, ce qui est fondamental pour le fonctionnement des réseaux.</li>  
-                <li><strong>Environnement LAMP :</strong> Création d’un environnement serveur LAMP (Linux, Apache, MariaDB, PHP), essentiel pour le développement et l’hébergement d’applications web.</li>  
-                <li><strong>Commandes sous Linux :</strong> Apprentissage et maîtrise des commandes de base sous Linux, permettant une manipulation efficace du système d'exploitation en environnement serveur.</li>  
-                <li><strong>Commandes sous Docker :</strong> Commandes de base de Docker en cli.</li>
-                <li><strong>Déploiement de système d'exploitation de bureau :</strong> Utilisation du logiciel Fog Project pour déployer Windows 11 sur plusieurs postes de travail.</li>  
-				<li><strong>PfSense :</strong> Installation et utilisation du pare-feu PfSense dans une architecture réseaux (création de Vlans, redondance avec deux pare-feu PfSense via CARP)</li>  
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Systèmes et Réseaux</h1>
+            <p>
+                Au cours de ma formation en BTS Services Informatiques aux Organisations, j'ai eu l'opportunité 
+                de découvrir et de mettre en pratique plusieurs technologies essentielles dans le domaine 
+                des systèmes et réseaux.
+            </p>
+        </div>
+    </section>
 
-            </ul>  
-            <!-- Bouton de retour -->  
-            <a href="page2.html" class="btn-return">Retour</a>  
-        </div>  
-    </section>  
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <!-- Virtualisation -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">💻</div>
+                    <h2>Virtualisation</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">📦</span> Installation de machines virtuelles</h3>
+                        <p>Utilisation de <strong>Proxmox</strong> et <strong>VirtualBox</strong> pour installer des machines virtuelles telles que Debian 12, Windows Server 2022 et 2025, Windows 10/11, ce qui permet de simuler des environnements de travail variés et de tester différentes configurations sans affecter le système hôte.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">💾</span> Installation d'un serveur de sauvegarde</h3>
+                        <p>Installation et utilisation d'un <strong>PBS (Proxmox Backup Server)</strong> afin de sauvegarder les machines virtuelles d'un serveur Proxmox.</p>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Footer -->  
-    <footer>  
-        <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>  
-    </footer>  
+            <!-- Active Directory -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🏢</div>
+                    <h2>Active Directory & Gestion de domaine</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">🔐</span> Contrôleur de domaine Active Directory</h3>
+                        <p>Mise en place d'un contrôleur de domaine <strong>AD/DS</strong>, incluant la création de nouveaux utilisateurs, ce qui facilite la gestion des identités et des accès au sein d'un réseau d'entreprise.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">🔗</span> Intégration de machines</h3>
+                        <p>Intégration d'une machine dans un domaine <strong>Active Directory</strong> pour centraliser la gestion des ressources et des utilisateurs.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">📁</span> Gestion des lecteurs réseau</h3>
+                        <p>Création et connexion de lecteurs réseau à l'aide de scripts et de stratégies <strong>GPO (Group Policy Objects)</strong>, permettant une administration simplifiée des ressources partagées.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">🖨️</span> Déploiement d'imprimantes</h3>
+                        <p>Configuration de l'impression dans un environnement réseau via des stratégies <strong>GPO</strong>, assurant une accessibilité facile pour les utilisateurs.</p>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Lien vers les fichiers JS -->  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>  
-</body>  
+            <!-- Outils de gestion -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🛠️</div>
+                    <h2>Outils de gestion et collaboration</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">🎫</span> GLPI pour gestion de helpdesk</h3>
+                        <p>Configuration de l'outil <strong>GLPI</strong> pour gérer les tickets de support, en intégrant un lien LDAP pour l'authentification des utilisateurs, et mise en place d'un agent GLPI pour un suivi optimal des équipements.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">☁️</span> Nextcloud</h3>
+                        <p>Mise en route de <strong>Nextcloud</strong>, un outil de stockage et partage de fichiers, avec intégration d'une liaison LDAP pour gérer les utilisateurs de manière centralisée.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Réseaux -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🌐</div>
+                    <h2>Réseaux et sécurité</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">🔢</span> Compétences en adressage IP</h3>
+                        <p>Compréhension des principes de l'<strong>adressage IP</strong>, ce qui est fondamental pour le fonctionnement des réseaux.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">🛡️</span> PfSense</h3>
+                        <p>Installation et utilisation du pare-feu <strong>PfSense</strong> dans une architecture réseaux (création de Vlans, redondance avec deux pare-feu PfSense via CARP).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Systèmes Linux -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🐧</div>
+                    <h2>Administration Linux</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">⚡</span> Environnement LAMP</h3>
+                        <p>Création d'un environnement serveur <strong>LAMP (Linux, Apache, MariaDB, PHP)</strong>, essentiel pour le développement et l'hébergement d'applications web.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">⌨️</span> Commandes sous Linux</h3>
+                        <p>Apprentissage et maîtrise des <strong>commandes de base sous Linux</strong>, permettant une manipulation efficace du système d'exploitation en environnement serveur.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">🐳</span> Commandes sous Docker</h3>
+                        <p>Commandes de base de <strong>Docker en CLI</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Déploiement -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🚀</div>
+                    <h2>Déploiement</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3><span class="skill-icon">💿</span> Déploiement de système d'exploitation de bureau</h3>
+                        <p>Utilisation du logiciel <strong>Fog Project</strong> pour déployer Windows 11 sur plusieurs postes de travail.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Section -->
+    <section class="navigation-section">
+        <div class="container">
+            <h2 style="font-size: 2rem; font-weight: 800; color: #212529; margin-bottom: 2rem;">Explorez mes autres compétences</h2>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="page2.html" class="btn-return">Retour aux compétences</a>
+                <a href="programmation.html" class="btn-return">Programmation</a>
+                <a href="cybersecurite.html" class="btn-return">Cybersécurité</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-30px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
 </html>
-
