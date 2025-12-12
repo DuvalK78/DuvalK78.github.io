@@ -1,84 +1,542 @@
-<!DOCTYPE HTML>  
-<html lang="fr">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Certifications - Portfolio K. Duval</title>  
-    <!-- Lien vers Google Fonts -->  
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">  
-    <!-- Lien vers Bootstrap -->  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">  
-    <!-- Lien vers ton fichier CSS -->  
-    <link rel="stylesheet" href="styles.css">  
-    <style>  
-        .custom-btn {
-			margin-top: 20px;
-			display: inline-block;
-			color: #007AFF; /* Couleur du texte */
-			padding: 5px 15px;
-			font-size: 1rem;
-			border: 2px solid #000; /* Bordure de la même couleur que le texte */
-			border-left: 5px 15px;
-			border-right: 5px 15px;
-			border-radius: 70px; /* Arrondi pour les côtés */
-			text-decoration: none;
-			transition: color 0.3s, border-color 0.3s;
-			transition: transform 0.3s ease;
-		}
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications - Portfolio K. Duval</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        .custom-btn:hover {
-			color: #005fff; /* Couleur au survol */
-			border-color: #000; /* Changement de couleur de la bordure au survol */
-		}
-		
-		.custom-btn:active {  
-			transform: scale(0.90);
-		}
-    </style>  
-</head>  
-<body>  
-    <!-- Navigation -->  
-    <header class="navbar navbar-expand-lg navbar-dark fixed-top">  
-        <div class="container">  
-            <a href="index.html" class="navbar-brand">K.Duval</a>  
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">  
-                <span class="navbar-toggler-icon"></span>  
-            </button>  
-            <div class="collapse navbar-collapse" id="navbarNav">  
-                <ul class="navbar-nav ms-auto">  
-                    <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>  
-                    <li class="nav-item"><a href="page1.html" class="nav-link">À propos de moi</a></li>  
-                    <li class="nav-item"><a href="page2.html" class="nav-link">Compétences</a></li>  
-                    <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>  
-                    <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>  
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.2rem 0;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #212529 !important;
+        }
+
+        .nav-link {
+            color: #212529 !important;
+            font-weight: 600;
+            padding: 0.7rem 1.2rem !important;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .nav-link.active {
+            color: #667eea !important;
+        }
+
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #667eea !important;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '🏆';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .cert-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+        }
+
+        .cert-intro h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #212529;
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-intro p {
+            font-size: 1.2rem;
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        /* Main CTA Card */
+        .cta-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 3px solid #667eea;
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '📜';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cta-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-card p {
+            font-size: 1.1rem;
+            color: #495057;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-presentation {
+            padding: 1.5rem 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            border: none;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-presentation:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+            color: #ffffff;
+        }
+
+        .btn-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Categories Grid */
+        .categories-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #212529;
+            margin-bottom: 3rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: #ffffff;
+            border: 3px solid #e9ecef;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .category-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 1rem;
+        }
+
+        .category-card p {
+            color: #495057;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .badge-count {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 3rem auto 0;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .info-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-card p {
+            color: #495057;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #212529;
+            padding: 2rem 0;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .cert-intro h2 {
+                font-size: 2rem;
+            }
+
+            .cta-card {
+                padding: 3rem 2rem;
+            }
+
+            .btn-presentation {
+                padding: 1.2rem 2.5rem;
+                font-size: 1.1rem;
+            }
+
+            .categories-grid,
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">K.Duval</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li class="nav-item"><a href="page1.html" class="nav-link">À propos de moi</a></li>
+                    <li class="nav-item"><a href="page2.html" class="nav-link">Compétences</a></li>
+                    <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>
+                    <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>
                     <li class="nav-item"><a href="page7.html" class="nav-link active">Certifications</a></li>
-		    <li class="nav-item"><a href="page8.html" class="nav-link">Veille Technologique</a></li>
-                    <li class="nav-item"><a href="page5.html" class="nav-link">Contact</a></li>  
-                </ul>  
-            </div>  
-        </div>  
-    </header>  
+                    <li class="nav-item"><a href="page8.html" class="nav-link">Veille Technologique</a></li>
+                    <li class="nav-item"><a href="page5.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-    <!-- Section Certifications -->  
-    <section class="about-section text-center">  
-        <div class="container">  
-            <h1>Certifications</h1>  
-            <p>  
-                Ce lien amène à un diaporama qui présente mes certifications réalisées, celles en cours et celles que je souhaite réaliser, accompagné d'un descriptif de chaque.  
-            </p>  
-            <a href="https://gamma.app/docs/Mon-parcours-de-certifications-Kerian-Duval-BTS-Session-2026-4nocltiezfaknd7"   
-               class="custom-btn" target="_blank">  
-                Voir le diaporama  
-            </a>  
-        </div>  
-    </section>  
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Mes Certifications</h1>
+            <p>
+                Un aperçu de mon parcours de certifications professionnelles : 
+                réalisées, en cours et à venir.
+            </p>
+        </div>
+    </section>
 
-    <!-- Footer -->  
-    <footer>  
-        <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>  
-    </footer>  
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="cert-intro">
+                <h2>Mon parcours de certification</h2>
+                <p>
+                    Découvrez l'ensemble de mes certifications dans un diaporama interactif 
+                    qui présente mes acquis, mes projets en cours et mes objectifs futurs, 
+                    accompagnés d'un descriptif détaillé pour chacune.
+                </p>
+            </div>
 
-    <!-- Lien vers les fichiers JS -->  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>  
-</body>  
+            <!-- CTA Card -->
+            <div class="cta-card">
+                <h3>📊 Présentation complète</h3>
+                <p>
+                    Accédez au diaporama complet qui détaille toutes mes certifications, 
+                    leur contenu et leur niveau de progression.
+                </p>
+                <a href="https://gamma.app/docs/Mon-parcours-de-certifications-Kerian-Duval-BTS-Session-2026-4nocltiezfaknd7" 
+                   class="btn-presentation" 
+                   target="_blank">
+                    <span class="btn-icon">🎯</span>
+                    Voir le diaporama
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Catégories de certifications</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">✅</div>
+                    <h3>Certifications obtenues</h3>
+                    <p>
+                        Certifications professionnelles validées qui attestent de mes compétences acquises.
+                    </p>
+                    <span class="badge-count">Voir dans le diaporama</span>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">⏳</div>
+                    <h3>En cours de réalisation</h3>
+                    <p>
+                        Certifications actuellement en préparation dans le cadre de ma formation continue.
+                    </p>
+                    <span class="badge-count">Voir dans le diaporama</span>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🎯</div>
+                    <h3>Objectifs futurs</h3>
+                    <p>
+                        Certifications visées pour développer davantage mes compétences professionnelles.
+                    </p>
+                    <span class="badge-count">Voir dans le diaporama</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="cert-intro">
+                <h2>Pourquoi les certifications ?</h2>
+            </div>
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="info-card-icon">📚</div>
+                    <h4>Développement continu</h4>
+                    <p>Les certifications me permettent d'approfondir mes connaissances techniques</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">🏅</div>
+                    <h4>Reconnaissance</h4>
+                    <p>Validation officielle de mes compétences par des organismes reconnus</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">🚀</div>
+                    <h4>Évolution professionnelle</h4>
+                    <p>Atout majeur pour ma carrière dans le domaine informatique</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">🎓</div>
+                    <h4>Spécialisation</h4>
+                    <p>Expertise dans des domaines spécifiques comme la cybersécurité et les réseaux</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.category-card, .info-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
 </html>
