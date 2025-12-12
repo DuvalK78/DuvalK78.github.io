@@ -1,63 +1,468 @@
-<!DOCTYPE HTML>  
-<html lang="fr">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Veille Technologique - Portfolio K. Duval</title>  
-    <!-- Lien vers Google Fonts -->  
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">  
-    <!-- Lien vers Bootstrap -->  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">  
-    <!-- Lien vers ton fichier CSS -->  
-    <link rel="stylesheet" href="styles.css">  
-</head>  
-<body>  
-    <!-- Navigation -->  
-    <header class="navbar navbar-expand-lg navbar-dark fixed-top">  
-        <div class="container">  
-            <a href="index.html" class="navbar-brand">K.Duval</a>  
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">  
-                <span class="navbar-toggler-icon"></span>  
-            </button>  
-            <div class="collapse navbar-collapse" id="navbarNav">  
-                <ul class="navbar-nav ms-auto">  
-                    <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>  
-                    <li class="nav-item"><a href="page1.html" class="nav-link">À propos de moi</a></li>  
-                    <li class="nav-item"><a href="page2.html" class="nav-link">Compétences</a></li>  
-                    <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>  
-                    <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>  
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique - Portfolio K. Duval</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.2rem 0;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #212529 !important;
+        }
+
+        .nav-link {
+            color: #212529 !important;
+            font-weight: 600;
+            padding: 0.7rem 1.2rem !important;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .nav-link.active {
+            color: #667eea !important;
+        }
+
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #667eea !important;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '🔍';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .intro-section {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #212529;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: #495057;
+            line-height: 1.8;
+        }
+
+        /* Veille Cards */
+        .veille-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .veille-card {
+            background: #f8f9fa;
+            border: 3px solid #e9ecef;
+            border-radius: 25px;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .veille-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .veille-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25);
+            transform: translateY(-15px);
+            background: #ffffff;
+        }
+
+        .veille-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .veille-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .veille-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 1.5rem;
+        }
+
+        .veille-card p {
+            color: #495057;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+        }
+
+        .btn-veille {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            border: none;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-veille:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            color: #ffffff;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #212529;
+            margin-bottom: 3rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .info-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-card p {
+            color: #495057;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #212529;
+            padding: 2rem 0;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .intro-section h2 {
+                font-size: 2rem;
+            }
+
+            .veille-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .veille-icon {
+                font-size: 4rem;
+                padding: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">K.Duval</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li class="nav-item"><a href="page1.html" class="nav-link">À propos de moi</a></li>
+                    <li class="nav-item"><a href="page2.html" class="nav-link">Compétences</a></li>
+                    <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>
+                    <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>
                     <li class="nav-item"><a href="page7.html" class="nav-link">Certifications</a></li>
-				    <li class="nav-item"><a href="page8.html" class="nav-link active">Veille Technologique</a></li>					
-                    <li class="nav-item"><a href="page5.html" class="nav-link">Contact</a></li>  
-                </ul>  
-            </div>  
-        </div>  
-    </header>  
+                    <li class="nav-item"><a href="page8.html" class="nav-link active">Veille Technologique</a></li>
+                    <li class="nav-item"><a href="page5.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-    <!-- Section Compétences -->  
-    <main class="main-content">  
-        <section class="about-section text-center">  
-            <div class="container">  
-                <h1>Veille Technologique</h1>  
-                <p>  
-                    Étudiant en BTS SIO1 au Lycée Notre Dame de la Providence d’Avranches,   
-                    j'ai acquis des compétences aussi bien en Solutions d'Infrastructure,   
-                    Systèmes et Réseaux qu'en Solutions Logicielles et Applications Métiers.  
-                </p><br>  
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="Wireshark.html" class="btn btn-gradient">Wireshark</a>
-                    <a href="clone_virtuel.html" class="btn btn-gradient">Clone Virtuel</a>  
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Veille Technologique</h1>
+            <p>
+                Explorer les technologies émergentes et se tenir informé des dernières 
+                innovations dans le domaine informatique.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="intro-section">
+                <h2>Mes sujets de veille</h2>
+                <p>
+                    Dans le cadre de ma formation en BTS SIO, j'effectue une veille technologique 
+                    sur deux domaines clés qui m'intéressent particulièrement et qui sont essentiels 
+                    pour mon développement professionnel.
+                </p>
+            </div>
+
+            <!-- Veille Cards -->
+            <div class="veille-grid">
+                <!-- Wireshark -->
+                <div class="veille-card">
+                    <div class="veille-icon">📡</div>
+                    <h3>Wireshark</h3>
+                    <p>
+                        Analyse approfondie de Wireshark, l'outil d'analyse de protocoles réseau 
+                        le plus utilisé au monde. Découvrez comment cet analyseur de paquets 
+                        permet de diagnostiquer les problèmes réseau, d'analyser la sécurité 
+                        et de comprendre les communications réseau en profondeur.
+                    </p>
+                    <a href="Wireshark.html" class="btn-veille">
+                        Découvrir Wireshark →
+                    </a>
                 </div>
-            </div>  
-        </section>  
-    </main>  
 
-    <!-- Footer -->  
-    <footer>  
-        <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>  
-    </footer>  
+                <!-- Clone Virtuel -->
+                <div class="veille-card">
+                    <div class="veille-icon">🤖</div>
+                    <h3>Clone Virtuel</h3>
+                    <p>
+                        Exploration des technologies de clonage virtuel et d'assistants virtuels. 
+                        Analyse des solutions permettant de créer des représentations numériques 
+                        intelligentes, leurs applications en entreprise et les enjeux liés à 
+                        l'intelligence artificielle et à l'automatisation.
+                    </p>
+                    <a href="clone_virtuel.html" class="btn-veille">
+                        Découvrir le Clone Virtuel →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Lien vers les fichiers JS -->  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>  
-</body>  
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <h2 class="section-title">Pourquoi la veille technologique ?</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-icon">📰</div>
+                    <h4>Rester à jour</h4>
+                    <p>Se tenir informé des dernières innovations et évolutions technologiques du secteur</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">💡</div>
+                    <h4>Anticiper les tendances</h4>
+                    <p>Identifier les technologies émergentes qui façonneront l'avenir de l'informatique</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">🎯</div>
+                    <h4>Développer ses compétences</h4>
+                    <p>Approfondir mes connaissances sur des outils et concepts spécifiques</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">🚀</div>
+                    <h4>Innover</h4>
+                    <p>S'inspirer des nouvelles technologies pour proposer des solutions innovantes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.veille-card, .info-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
 </html>
