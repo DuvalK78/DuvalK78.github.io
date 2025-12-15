@@ -4,75 +4,383 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Portfolio K. Duval</title>
-    <!-- Lien vers Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- Lien vers Bootstrap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Lien vers ton fichier CSS -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Lien vers FontAwesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Styles spécifiques */
-        .contact-section {
-            background-color: #f8f9fa;
-            padding: 80px 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .contact-section h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.2rem 0;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #212529 !important;
+        }
+
+        .nav-link {
+            color: #212529 !important;
+            font-weight: 600;
+            padding: 0.7rem 1.2rem !important;
+            transition: all 0.3s ease;
             position: relative;
-            display: inline-block;
-        }
-        .contact-info {
-            margin-top: 20px;
-        }
-        .contact-info p {
-            font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .contact-info i {
-            color: #0078d7;
-            margin-right: 10px;
-        }
-        .contact-form {
-            margin-top: 40px;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            margin-bottom: 15px;
-        }
-        .contact-form button {
-            background: #0078d7;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
             font-size: 1rem;
-            border-radius: 5px;
-            transition: background 0.3s;
         }
-        .contact-form button:hover {
-            background: #0056a1;
+
+        .nav-link.active {
+            color: #667eea !important;
         }
-        .underline {
+
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .nav-link::after {
+            content: '';
             position: absolute;
-            width: 150px;
-            height: 2px;
-            background-color: black;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            top: 100%;
+            width: 0;
+            height: 3px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #667eea !important;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '📧';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .contact-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .intro-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #212529;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: #495057;
+            line-height: 1.8;
+        }
+
+        /* Contact Cards Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            border: 3px solid #e9ecef;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.2);
+            transform: translateY(-10px);
+            background: #ffffff;
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-icon {
+            font-size: 3.5rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: #495057;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .contact-link:hover {
+            color: #764ba2;
+            transform: translateX(5px);
+        }
+
+        /* Main Contact Card */
+        .main-contact-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 3px solid #667eea;
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.15);
+        }
+
+        .main-contact-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 2rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: #ffffff;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+            transform: translateX(10px);
+        }
+
+        .method-icon {
+            font-size: 2rem;
+            color: #667eea;
+            min-width: 50px;
+        }
+
+        .method-info {
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .method-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .method-value {
+            font-size: 1.1rem;
+            color: #212529;
+            font-weight: 600;
+        }
+
+        .method-value a {
+            color: #212529;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .method-value a:hover {
+            color: #667eea;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-white {
+            padding: 1.2rem 3rem;
+            background: #ffffff;
+            border: none;
+            border-radius: 50px;
+            color: #667eea;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            color: #764ba2;
+        }
+
+        /* Footer */
+        footer {
+            background: #212529;
+            padding: 2rem 0;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .intro-section h2 {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-contact-card {
+                padding: 3rem 2rem;
+            }
+
+            .contact-method:hover {
+                transform: translateY(-5px);
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <header class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <header class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a href="index.html" class="navbar-brand">K.Duval</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -83,22 +391,89 @@
                     <li class="nav-item"><a href="page3.html" class="nav-link">Expériences</a></li>
                     <li class="nav-item"><a href="page6.html" class="nav-link">CV</a></li>
                     <li class="nav-item"><a href="page7.html" class="nav-link">Certifications</a></li>
+                    <li class="nav-item"><a href="page8.html" class="nav-link">Veille Technologique</a></li>
                     <li class="nav-item"><a href="page5.html" class="nav-link active">Contact</a></li>
                 </ul>
             </div>
         </div>
     </header>
 
-    <!-- Section Contact -->
-    <section class="contact-section text-center">
+    <!-- Page Header -->
+    <section class="page-header">
         <div class="container">
-            <h1>Contact
-                <a href="Perso/Websitesindex.html" class="underline"> </a>
-            </h1>
-            <div class="contact-info">
-                <p><i class="fas fa-phone"></i> 07.71.59.74.77</p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:duval.kerian18@ik.me">duval.kerian18@ik.me</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:duval.kerian18@gmail.com">duval.kerian18@gmail.com</a></p>
+            <h1>Contactez-moi</h1>
+            <p>
+                N'hésitez pas à me contacter pour toute question, opportunité professionnelle 
+                ou collaboration. Je serai ravi d'échanger avec vous !
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container contact-container">
+            <div class="intro-section">
+                <h2>Restons en contact</h2>
+                <p>
+                    Je suis toujours ouvert à de nouvelles opportunités, collaborations ou simplement 
+                    pour échanger sur les technologies et l'informatique.
+                </p>
+            </div>
+
+            <!-- Main Contact Card -->
+            <div class="main-contact-card">
+                <h3>Mes coordonnées</h3>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="method-info">
+                            <div class="method-label">Téléphone</div>
+                            <div class="method-value">07 71 59 74 77</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="method-info">
+                            <div class="method-label">Email principal</div>
+                            <div class="method-value">
+                                <a href="mailto:duval.kerian18@ik.me">duval.kerian18@ik.me</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="method-info">
+                            <div class="method-label">Email secondaire</div>
+                            <div class="method-value">
+                                <a href="mailto:duval.kerian18@gmail.com">duval.kerian18@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Découvrez mon parcours</h2>
+            <p>
+                Consultez mon CV complet ou explorez mes compétences et réalisations 
+                pour en savoir plus sur mon profil.
+            </p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="page6.html" class="btn-white">Voir mon CV</a>
+                <a href="page2.html" class="btn-white">Mes compétences</a>
+                <a href="page3.html" class="btn-white">Mes expériences</a>
             </div>
         </div>
     </section>
@@ -108,8 +483,29 @@
         <p>© 2025 K. Duval. Tous droits réservés. | <a href="mailto:duval.kerian18@ik.me">Contactez-moi</a></p>
     </footer>
 
-    <!-- Lien vers les fichiers JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.contact-card, .contact-method').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
-
